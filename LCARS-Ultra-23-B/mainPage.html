@@ -61,23 +61,30 @@
 		border-color: var(--lightGray);
 		color: var(--lightGray);
 	}
+
+	.centered-grid {
+		display: grid;
+		place-items: center;
+		height: 100vh;
+		width: 100vw;
+	}
 </style>
 <div id="settingsArea" style="visibility: hidden;">
-	<div id="contentBlocker" style="height: 100vh; width: 100vw; background-color: black; opacity: .75; position: fixed; z-index: 11;"></div>
+	<div id="contentBlocker" style="background-color: black; opacity: .75; position: fixed; z-index: 11; top: 0; bottom: 0; left: 0; right: 0; margin: 0px 0px 0px 0px"></div>
 	<div id="exitSettings" class="panel-1 pageSettings" style="z-index: 12; position: fixed;">Exit</div>
 	<div>
 
 	</div>
 </div>
-	<video class="flex" id="warpJumpVideo" src="../LCARS-Ultra-23-B/assets/WarpJump.mp4" muted="true" autoplay="true" style="position: fixed; visibility: visible; z-index: 10; object-fit: cover;"></video>
-	<video class="flex" id="warpLoop" src="../LCARS-Ultra-23-B/assets/WarpStarsLoop.mov" muted="true" autoplay="true" loop="true" style="position: fixed; visibility: hidden; z-index: -10; object-fit: cover;"></video>
+	<video class="centered-grid" id="warpJumpVideo" src="../LCARS-Ultra-23-B/assets/WarpJump.mp4" muted="true" autoplay="true" style="position: fixed; visibility: visible; z-index: 10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
+	<video class="centered-grid" id="warpLoop" src="../LCARS-Ultra-23-B/assets/WarpStarsLoop.mov" muted="true" autoplay="true" loop="true" style="position: fixed; visibility: hidden; z-index: -10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
 <body id="body" style="visibility: hidden;">
 	<div class="wrap-everything">
 		<section id="column-3-standard">
 			<div class="top-wrapper">
 				<div class="top-display">
 					<div class="top-display-left">
-						<div style="position: fixed; z-index: 9; width: var(--sidebar)">
+						<div style="position: fixed; z-index: 9; width: var(--sidebar); top: 0">
 							<nav id="primary-nav">
 								<a href="#home">Home</a>
 								<a href="#bookAMission">Book A Mission</a>
