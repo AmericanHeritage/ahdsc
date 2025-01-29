@@ -38,10 +38,12 @@
 
 	settings.onclick = function() {
 			settingsArea.style.visibility = "visible";
+			document.body.style.overflow = "hidden";
 	}
 
 	exitSettings.onclick = function() {
 			settingsArea.style.visibility = "hidden";
+			document.body.style.overflow = "auto";
 		}
 }
 </script>
@@ -71,7 +73,7 @@
 </style>
 <div id="settingsArea" style="visibility: hidden;">
 	<div id="contentBlocker" style="background-color: black; opacity: .75; position: fixed; z-index: 11; top: 0; bottom: 0; left: 0; right: 0; margin: 0px 0px 0px 0px"></div>
-	<div id="exitSettings" class="panel-1 pageSettings" style="z-index: 12; position: fixed;">Exit</div>
+	<div id="exitSettings" class="panel-1 pageSettings" style="z-index: 12; position: fixed; text-align: center;">Exit</div>
 	<div>
 
 	</div>
@@ -341,7 +343,7 @@
 									</p>
 
 									<p>	<!-- This paragraph must not be removed. -->
-										LCARS Inspired Website Template by <a href="https://www.thelcars.com">www.TheLCARS.com</a>						
+										LCARS Inspired Website Template by <a href="https://www.thelcars.com" target="_blank">www.TheLCARS.com</a>						
 									</p>
 
 								</div>
