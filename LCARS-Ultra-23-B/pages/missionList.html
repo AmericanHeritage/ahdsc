@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="icon" href="../assets/AHDSC.png">
+	<title>American Heritage Discovery Space Center</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="format-detection" content="date=no">
+	<link rel="stylesheet" type="text/css" href="../assets/lcars-ultra-picard.css">
+	<script src="../assets/jquery-3-7-0.min.js"></script>
+</head>
+
+<script>
+	window.onload = function() {
+		var video = document.getElementById("warpJumpVideo");
+		var loop = document.getElementById("warpLoop");
+		var body = document.getElementById("body");
+		var logo = document.getElementById("sfc");
+		video.onended = function() {
+			loop.style.visibility = "visible";
+			video.style.transition = "opacity 1s";
+			body.style.transition = "opacity 1s";
+			loop.style.transition = "opacity 1s";
+			body.style.visibility = "visible";
+			video.style.opacity = "0";
+			loop.style.opacity = "1";
+			body.style.opacity = "1";
+			setTimeout(function() {
+				video.style.display = "none";
+			}, 1000);
+			document.body.style.overflow = "auto";
+		}
+
+	var settings = document.getElementById("settings");
+	var settingsArea = document.getElementById("settingsArea");
+	var exitSettings = document.getElementById("exitSettings");
+
+	settings.onclick = function() {
+			settingsArea.style.visibility = "visible";
+			document.body.style.overflow = "hidden";
+	}
+
+	exitSettings.onclick = function() {
+			settingsArea.style.visibility = "hidden";
+			document.body.style.overflow = "auto";
+		}
+
+	var exitJumpVideo = document.getElementById("exitWarpStart");
+	var missionButton = document.getElementById("missionButton");
+
+	missionButton.onclick = function(event) {
+                event.preventDefault();
+                changePage('../pages/missionList.html', exitJumpVideo);
+            }
+        }
+
+        function changePage(newPage, exitJumpVideo) {
+				exitJumpVideo.style.visibility = "visible";
+				exitJumpVideo.play();
+				exitJumpVideo.style.transition = "opacity 1s";
+				exitJumpVideo.style.opacity = "1";
+                setTimeout(function() {
+                    window.location.href = newPage;
+                }, 2150);
+        }
+</script>
+<style>
+	:root {
+		--lighterGray: #c1c1c1;
+		--lightGray: #707070;
+	}
+
+	.pageSettings:hover {
+		filter: none;
+		border-color: var(--lighterGray);
+		color: var(--lighterGray);
+	}
+
+	.pageSettings {
+		border-color: var(--lightGray);
+		color: var(--lightGray);
+	}
+
+	.centered-grid {
+		display: grid;
+		place-items: center;
+		height: 100vh;
+		width: 100vw;
+	}
+</style>
+<div id="settingsArea" style="visibility: hidden;">
+	<div id="contentBlocker" style="background-color: black; opacity: .75; position: fixed; z-index: 11; top: 0; bottom: 0; left: 0; right: 0; margin: 0px 0px 0px 0px"></div>
+	<div id="exitSettings" class="panel-1 pageSettings" style="z-index: 12; position: fixed; text-align: center;">Exit</div>
+</div>
+<div id="videos">
+	<video class="centered-grid" id="exitWarpStart" src="../assets/ExitJumpStart.mp4" muted="true" style="position: fixed; visibility: hidden; z-index: 100; opacity: 0; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
+	<video class="centered-grid" id="warpJumpVideo" src="../assets/WarpJump.mp4" muted="true" autoplay="true" style="position: fixed; visibility: visible; z-index: 10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
+	<video class="centered-grid" id="warpLoop" src="../assets/WarpStarsLoop.mov" muted="true" autoplay="true" loop="true" style="position: fixed; visibility: hidden; z-index: -10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
+</div>
+<body id="body" style="visibility: hidden;">
+	<div class="wrap-everything">
+		<section id="column-3-standard">
+			<div class="top-wrapper">
+				<div class="top-display">
+					<div class="top-display-left">
+						<div style="position: fixed; z-index: 9; width: var(--sidebar); top: 0">
+							<nav id="primary-nav">
+								<a href="../pages/mainPage.html">Home</a>
+								<a id="missionButton">Missions</a>
+								<a href="../pages/pages/missionBookings.html">Bookings</a>
+								<a href="../pages/pages/houseBios.html">Lore</a>
+								<a href="../pages/pages/donations.html">Donate</a>
+								<a href="../pages/pages/aboutUs.html">About Us</a>
+								<style>
+								</style>
+							</nav>
+							<div class="panel-wrapper">
+								<div id="settings" class="panel-1 pageSettings">Page Settings</div>
+							</div>
+						</div>
+					</div>
+					<div class="top-display-right">
+						<div class="top-display-content">
+							<div class="top-arch-1">
+								<div class="top-arch-2">
+									<div class="top-arch-content">
+										<img src="../assets/AHDSC.png" class="sfc" id="sfc">
+										<div class="lcars-heading">American Heritage Discovery Space Center</div>
+										<div class="lcars-access">
+											user authorization code <span class="blink medium-dark-blue">accepted</span>
+										</div>
+									</div>
+									<div class="top-arch-panel-1">
+									</div>
+									<div class="top-arch-panel-2">
+										23<span class="hop">-</span>09										
+									</div>
+								</div>
+							</div>							
+						</div>
+						<div class="arch-bottom">
+							<div class="arch-base"> </div>
+						</div>
+					</div>
+				</div>
+				<div class="top-display-bottom">					
+					<div class="bar-elbow"></div>
+					<div class="bar-1"></div>
+					<div class="bar-2"></div>
+					<div class="bar-3"></div>
+					<div class="bar-4"></div>
+					<div class="bar-5"></div>		
+				</div>
+			</div> <!-- / top-wrapper -->
+			<div class="spacer">
+				<div class="space-sidebar"></div>
+				<div class="space-1"></div>
+				<div class="space-2"></div>
+				<div class="space-3"></div>
+				<div class="space-4"></div>
+			</div>
+			<div class="wrap">
+				<div class="scroll-top"><a id="scroll-top" href=""><span class="hop">screen</span> top</a></div>
+				<div class="left-frame">
+					<div>
+						<div class="panel-3">03<span class="hop">-111968</span></div>
+						<div class="panel-4">04<span class="hop">-41969</span></div>
+						<div class="panel-5">05<span class="hop">-1701D</span></div>
+						<div class="panel-6">06<span class="hop">-071984</span></div>
+						<div class="panel-7">07<span class="hop">-47148</span></div>
+					</div>
+					<div>
+						<div class="panel-8">08<span class="hop">-03958K</span></div>
+						<div class="panel-3">09<span class="hop">-373H1</span></div>
+						<div class="panel-4">10<span class="hop">-219378</span></div>
+						<div class="panel-5">11<span class="hop">-553998</span></div>
+						<div class="panel-6">12<span class="hop">-3E9122</span></div>
+						<div class="panel-7">13<span class="hop">-T3827</span></div>
+						<div class="panel-8">14<span class="hop">-10923L</span></div>
+						<div class="panel-3">15<span class="hop">-392942</span></div>
+						<div class="panel-4">16<span class="hop">-1193J0</span></div>
+						<div class="panel-5">17<span class="hop">-1034W</span></div>
+						<div class="panel-6">18<span class="hop">-19393</span></div>
+						<div class="panel-7">19<span class="hop">-09F3R2</span></div>
+						<div class="panel-8">20<span class="hop">-109203</span></div>
+						<div class="panel-3">21<span class="hop">-JL189</span></div>
+						<div class="panel-4">22<span class="hop">-096632</span></div>
+						<div class="panel-5">23<span class="hop">-20472</span></div>
+						<div class="panel-6">24<span class="hop">-039EO</span></div>
+						<div class="panel-7">25<span class="hop">-484820</span></div>
+						<div class="panel-8">26<span class="hop">-4839A</span></div>
+					</div>
+				</div>
+				<div class="right-frame">
+					<div class="bar-runner">
+						<div class="bar-6"></div>
+						<div class="bar-7"></div>
+						<div class="bar-8"></div>
+						<div class="bar-9"></div>
+						<div class="bar-10"></div>
+					</div>
+					<main>
+
+						<!-- Start your content here. -->
+						
+							<h1 id="home">Home</h1>
+							<h2>Terran Space Command wants you!</h2>
+							<p>American Heritage Discovery Space Center inspires a deeper connection to STEM, history, and social studies through simulated space adventures.</p>
+							<p>Find your place in the stars as the captain and crew of the UNS Discovery.</p>
+							<br>
+							<div class="top-display-bottom">
+								<div class="bar-1"></div>
+								<div class="bar-2"></div>
+								<div class="bar-3"></div>
+								<div class="bar-4"></div>
+								<div class="bar-5"></div>	
+							</div>
+							<div class="spacer">
+								<div class="space-1"></div>
+								<div class="space-2"></div>
+								<div class="space-3"></div>
+								<div class="space-4"></div>
+							</div>
+							<div class="bar-runner">
+								<div class="bar-6"></div>
+								<div class="bar-7"></div>
+								<div class="bar-8"></div>
+								<div class="bar-9"></div>
+								<div class="bar-10"></div>
+							</div>
+							<h1 id="about">About</h1>
+							<h2>Our Philosophy</h2>
+							<p>Our mission is to inspire deep, lasting, and transformative education. At American Heritage Discovery Space Center, we believe learning becomes permanent when it comes from within. As Isaac Asimov put it, “Self-education is…the only kind of education there is.”</p>
+							<p>The Discovery Simulator was built to catalyze this kind of learning. Attendees act as the captain and crew of the UNS Discovery, a fictional 22nd-century starship, in a Choose-Your-Own-Adventure-style movie. They work together to complete a mission, fulfilling various roles such as captain, pilot, communications, engineer, security, and more. Each mission is full of drama, adventure, and excitement while being developed around complex themes, historical events, and real science. By mixing theater and drama with learning, the missions seek to inspire each crew member to look deeper into the topics and concepts.</p>
+							<br>
+							<h2>Our Program</h2>
+							<p>American Heritage School is a K-12 private school.</p>
+							<p>During the daytime, 5th through 8th grade students attend the simulator as part of their science class curriculum. Daytime missions are hour-long episodes spaced out by a few weeks. Between episodes, special laboratory experiences inspired by and relevant to the mission explore the themes and concepts therein.</p>
+							<p>High school students act as staff members, actors, and content creators for the simulators. We believe that every high school student should graduate with a marketable skill, and the Discovery Space Center seeks to develop such skills in our students. The simulator and its operations provide an endless array of projects for students to solve, exposing them to real-world complexity without real-world consequences. </p>
+							<div>High school students enroll in one of four guilds as follows:
+								<ul>- Content Guild: research and write content-rich missions; create scientifically plausible solar systems and worlds; write lore; and any other information creation needs.</ul>
+								<ul>- Visual Effects Guild: create visual effects, motion graphics, film clips, CG models, etc. Students use Blender, Adobe Creative Cloud, Unity, Unreal Engine, and more.</ul>
+								<ul>- Coding Guild: code controls, microcontrollers, and Raspberry Pi's for the simulators.</ul>
+								<ul>- Construction Guild: build set pieces, props, costumes. Students use 3D CAD, 3D printing, power tools, CNC, woodworking techniques, soldering, and more.</ul>
+							</div>
+							<p>Naturally, our simulators are also available after school and during the summer for private bookings, birthday parties, corporate events, and summer camps. These simulators are fun, and using them often keeps the excitement around them high, a key ingredient to fulfilling our mission.</p>
+							<br>
+							<div class="top-display-bottom">
+								<div class="bar-1"></div>
+								<div class="bar-2"></div>
+								<div class="bar-3"></div>
+								<div class="bar-4"></div>
+								<div class="bar-5"></div>	
+							</div>
+							<div class="spacer">
+								<div class="space-1"></div>
+								<div class="space-2"></div>
+								<div class="space-3"></div>
+								<div class="space-4"></div>
+							</div>
+							<div class="bar-runner">
+								<div class="bar-6"></div>
+								<div class="bar-7"></div>
+								<div class="bar-8"></div>
+								<div class="bar-9"></div>
+								<div class="bar-10"></div>
+							</div>
+							<h1 id="gallery">Gallery</h1>
+							<h2>The USS Disovery</h2>
+							<p>Images of the USS Disovery:</p>
+							<div class="flex flex-row" style="display: flex; justify-content: space-evenly;">
+								<div style="display: flex; flex-wrap: wrap; gap: 10px; width: 50%; align-content: flex-start;">
+									<img src="../assets/Flight Gallery/IMG_20240813_153316_849.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
+									<img src="../assets/Flight Gallery/IMG_20240813_153316_914.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
+									<img src="../assets/Flight Gallery/IMG_20240813_153316_951.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
+									<img src="../assets/Flight Gallery/IMG_20240813_153316_971.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
+									<img src="../assets/Flight Gallery/IMG_20240813_153317_022.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
+									<img src="../assets/Flight Gallery/IMG_20240813_153317_051.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
+									<img src="../assets/Flight Gallery/IMG_20240813_153317_067.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
+								</div>
+								<div style="width: 50%; height: 50%;">
+									<img id="imageStage" src="../assets/Flight Gallery/IMG_20240813_153316_849.jpg" style="width: 100%; height: auto;">
+								</div>
+							</div>
+							<script>
+								function changeStage() {
+									var image = document.getElementById("imageStage");
+									image.src = event.target.src;
+								}
+
+								function showSelectionFade() {
+									event.target.style.opacity = "0.5";
+								}
+
+								function resetOpacity() {
+									event.target.style.opacity = "1";
+								}
+							</script>
+
+						<!-- End content area -->						
+
+						<footer>
+							<div class="footer-inside">
+								<div class="footer-text">
+
+									<p> <!-- Your copyright information is only a suggestion. You can also choose to delete this paragraph. -->
+										Content Copyright &#169; 2024 American Heritage Discovery Space Center
+									</p>
+
+									<p>	<!-- This paragraph must not be removed. -->
+										LCARS Inspired Website Template by <a href="https://www.thelcars.com" target="_blank">www.TheLCARS.com</a>						
+									</p>
+
+								</div>
+							</div>
+							<div class="footer-panel"> <span class="hop">22</span>47 </div>
+						</footer>
+					</main>
+				</div>
+			</div>
+		</section>
+	</div>
+	<script type="text/javascript" src="../assets/lcars.js"></script>
+</body>
+
+</html>

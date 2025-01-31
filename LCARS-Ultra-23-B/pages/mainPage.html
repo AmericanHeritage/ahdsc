@@ -2,13 +2,13 @@
 <html>
 
 <head>
-	<link rel="icon" href="assets/AHDSC.png">
+	<link rel="icon" href="../assets/AHDSC.png">
 	<title>American Heritage Discovery Space Center</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="format-detection" content="date=no">
-	<link rel="stylesheet" type="text/css" href="assets/lcars-ultra-picard.css">
-	<script src="assets/jquery-3-7-0.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../assets/lcars-ultra-picard.css">
+	<script src="../assets/jquery-3-7-0.min.js"></script>
 </head>
 
 <script>
@@ -45,7 +45,25 @@
 			settingsArea.style.visibility = "hidden";
 			document.body.style.overflow = "auto";
 		}
-}
+
+	var exitJumpVideo = document.getElementById("exitWarpStart");
+	var missionButton = document.getElementById("missionButton");
+
+	missionButton.onclick = function(event) {
+                event.preventDefault();
+                changePage('../pages/missionList.html', exitJumpVideo);
+            }
+        }
+
+        function changePage(newPage, exitJumpVideo) {
+				exitJumpVideo.style.visibility = "visible";
+				exitJumpVideo.play();
+				exitJumpVideo.style.transition = "opacity 1s";
+				exitJumpVideo.style.opacity = "1";
+                setTimeout(function() {
+                    window.location.href = newPage;
+                }, 2150);
+        }
 </script>
 <style>
 	:root {
@@ -74,12 +92,12 @@
 <div id="settingsArea" style="visibility: hidden;">
 	<div id="contentBlocker" style="background-color: black; opacity: .75; position: fixed; z-index: 11; top: 0; bottom: 0; left: 0; right: 0; margin: 0px 0px 0px 0px"></div>
 	<div id="exitSettings" class="panel-1 pageSettings" style="z-index: 12; position: fixed; text-align: center;">Exit</div>
-	<div>
-
-	</div>
 </div>
-	<video class="centered-grid" id="warpJumpVideo" src="../LCARS-Ultra-23-B/assets/WarpJump.mp4" muted="true" autoplay="true" style="position: fixed; visibility: visible; z-index: 10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
-	<video class="centered-grid" id="warpLoop" src="../LCARS-Ultra-23-B/assets/WarpStarsLoop.mov" muted="true" autoplay="true" loop="true" style="position: fixed; visibility: hidden; z-index: -10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
+<div id="videos">
+	<video class="centered-grid" id="exitWarpStart" src="../assets/ExitJumpStart.mp4" muted="true" style="position: fixed; visibility: hidden; z-index: 100; opacity: 0; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
+	<video class="centered-grid" id="warpJumpVideo" src="../assets/WarpJump.mp4" muted="true" autoplay="true" style="position: fixed; visibility: visible; z-index: 10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
+	<video class="centered-grid" id="warpLoop" src="../assets/WarpStarsLoop.mov" muted="true" autoplay="true" loop="true" style="position: fixed; visibility: hidden; z-index: -10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
+</div>
 <body id="body" style="visibility: hidden;">
 	<div class="wrap-everything">
 		<section id="column-3-standard">
@@ -88,12 +106,12 @@
 					<div class="top-display-left">
 						<div style="position: fixed; z-index: 9; width: var(--sidebar); top: 0">
 							<nav id="primary-nav">
-								<a href="../LCARS-Ultra-23-B/mainPage.html">Home</a>
-								<a href="../LCARS-Ultra-23-B/pages/missionList.html">Missions</a>
-								<a href="../LCARS-Ultra-23-B/pages/missionBookings.html">Bookings</a>
-								<a href="../LCARS-Ultra-23-B/pages/houseBios.html">Lore</a>
-								<a href="../LCARS-Ultra-23-B/pages/donations.html">Donate</a>
-								<a href="../LCARS-Ultra-23-B/pages/aboutUs.html">About Us</a>
+								<a href="../pages/mainPage.html">Home</a>
+								<a id="missionButton">Missions</a>
+								<a href="../pages/pages/missionBookings.html">Bookings</a>
+								<a href="../pages/pages/houseBios.html">Lore</a>
+								<a href="../pages/pages/donations.html">Donate</a>
+								<a href="../pages/pages/aboutUs.html">About Us</a>
 								<style>
 								</style>
 							</nav>
@@ -107,7 +125,7 @@
 							<div class="top-arch-1">
 								<div class="top-arch-2">
 									<div class="top-arch-content">
-										<img src="assets/AHDSC.png" class="sfc" id="sfc">
+										<img src="../assets/AHDSC.png" class="sfc" id="sfc">
 										<div class="lcars-heading">American Heritage Discovery Space Center</div>
 										<div class="lcars-access">
 											user authorization code <span class="blink medium-dark-blue">accepted</span>
@@ -253,16 +271,16 @@
 							<p>Images of the USS Disovery:</p>
 							<div class="flex flex-row" style="display: flex; justify-content: space-evenly;">
 								<div style="display: flex; flex-wrap: wrap; gap: 10px; width: 50%; align-content: flex-start;">
-									<img src="assets/Flight Gallery/IMG_20240813_153316_849.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
-									<img src="assets/Flight Gallery/IMG_20240813_153316_914.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
-									<img src="assets/Flight Gallery/IMG_20240813_153316_951.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
-									<img src="assets/Flight Gallery/IMG_20240813_153316_971.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
-									<img src="assets/Flight Gallery/IMG_20240813_153317_022.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
-									<img src="assets/Flight Gallery/IMG_20240813_153317_051.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
-									<img src="assets/Flight Gallery/IMG_20240813_153317_067.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
+									<img src="../assets/Flight Gallery/IMG_20240813_153316_849.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
+									<img src="../assets/Flight Gallery/IMG_20240813_153316_914.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
+									<img src="../assets/Flight Gallery/IMG_20240813_153316_951.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
+									<img src="../assets/Flight Gallery/IMG_20240813_153316_971.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
+									<img src="../assets/Flight Gallery/IMG_20240813_153317_022.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
+									<img src="../assets/Flight Gallery/IMG_20240813_153317_051.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
+									<img src="../assets/Flight Gallery/IMG_20240813_153317_067.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
 								</div>
 								<div style="width: 50%; height: 50%;">
-									<img id="imageStage" src="assets/Flight Gallery/IMG_20240813_153316_849.jpg" style="width: 100%; height: auto;">
+									<img id="imageStage" src="../assets/Flight Gallery/IMG_20240813_153316_849.jpg" style="width: 100%; height: auto;">
 								</div>
 							</div>
 							<script>
@@ -303,7 +321,7 @@
 			</div>
 		</section>
 	</div>
-	<script type="text/javascript" src="assets/lcars.js"></script>
+	<script type="text/javascript" src="../assets/lcars.js"></script>
 </body>
 
 </html>
