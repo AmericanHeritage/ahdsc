@@ -32,28 +32,38 @@
 			document.body.style.overflow = "auto";
 		}
 
-	var settings = document.getElementById("settings");
-	var settingsArea = document.getElementById("settingsArea");
-	var exitSettings = document.getElementById("exitSettings");
+        var settings = document.getElementById("settings");
+        var settingsArea = document.getElementById("settingsArea");
+        var exitSettings = document.getElementById("exitSettings");
 
-	settings.onclick = function() {
-			settingsArea.style.visibility = "visible";
-			document.body.style.overflow = "hidden";
-	}
-
-	exitSettings.onclick = function() {
-			settingsArea.style.visibility = "hidden";
-			document.body.style.overflow = "auto";
-		}
-
-	var warpJump = document.getElementById("warpJump");
-	var missionButton = document.getElementById("missionButton");
-
-	missionButton.onclick = function(event) {
-                event.preventDefault();
-                changePage('../pages/missionList.html', warpJump);
-            }
+        settings.onclick = function() {
+                settingsArea.style.visibility = "visible";
+                document.body.style.overflow = "hidden";
         }
+
+        exitSettings.onclick = function() {
+                settingsArea.style.visibility = "hidden";
+                document.body.style.overflow = "auto";
+            }
+
+        var warpJump = document.getElementById("warpJump");
+        var missionButton = document.getElementById("missionButton");
+        var homeButton = document.getElementById("homeButton");
+
+        homeButton.onclick = function (event) {
+            event.preventDefault();
+            body.style.transition = "opacity 1s"
+            body.style.opacity = "0";
+            setTimeout(function() {
+                window.location.href = "../pages/mainPage.html"
+            }, 1000);
+        }
+
+        missionButton.onclick = function(event) {
+                    event.preventDefault();
+                    changePage('../pages/missionList.html', warpJump);
+        }
+    }
 
         function changePage(newPage, exitJumpVideo) {
 				exitJumpVideo.style.visibility = "visible";
@@ -106,7 +116,7 @@
 					<div class="top-display-left">
 						<div style="position: fixed; z-index: 9; width: var(--sidebar); top: 0">
 							<nav id="primary-nav">
-								<a href="../pages/mainPage.html">Home</a>
+								<a id="homeButton">Home</a>
 								<a id="missionButton">Missions</a>
 								<a href="../pages/pages/missionBookings.html">Bookings</a>
 								<a href="../pages/pages/houseBios.html">Lore</a>
