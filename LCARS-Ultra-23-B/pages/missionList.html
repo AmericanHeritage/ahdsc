@@ -13,8 +13,8 @@
 
 <script>
 	window.onload = function() {
-		var video = document.getElementById("warpJumpVideo");
-		var loop = document.getElementById("warpLoop");
+		var video = document.getElementById("exitWarpEnd");
+		var loop = document.getElementById("starBackground");
 		var body = document.getElementById("body");
 		var logo = document.getElementById("sfc");
 		video.onended = function() {
@@ -46,12 +46,12 @@
 			document.body.style.overflow = "auto";
 		}
 
-	var exitJumpVideo = document.getElementById("exitWarpStart");
+	var warpJump = document.getElementById("warpJump");
 	var missionButton = document.getElementById("missionButton");
 
 	missionButton.onclick = function(event) {
                 event.preventDefault();
-                changePage('../pages/missionList.html', exitJumpVideo);
+                changePage('../pages/missionList.html', warpJump);
             }
         }
 
@@ -94,9 +94,9 @@
 	<div id="exitSettings" class="panel-1 pageSettings" style="z-index: 12; position: fixed; text-align: center;">Exit</div>
 </div>
 <div id="videos">
-	<video class="centered-grid" id="exitWarpStart" src="../assets/ExitJumpStart.mp4" muted="true" style="position: fixed; visibility: hidden; z-index: 100; opacity: 0; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
-	<video class="centered-grid" id="warpJumpVideo" src="../assets/WarpJump.mp4" muted="true" autoplay="true" style="position: fixed; visibility: visible; z-index: 10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
-	<video class="centered-grid" id="warpLoop" src="../assets/WarpStarsLoop.mov" muted="true" autoplay="true" loop="true" style="position: fixed; visibility: hidden; z-index: -10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
+	<video class="centered-grid" id="warpJump" src="../assets/WarpJump.mp4" muted="true" style="position: fixed; visibility: hidden; z-index: 100; opacity: 0; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
+    <video class="centered-grid" id="exitWarpEnd" src="../assets/ExitJumpEnd.mp4" muted="true" autoplay="true" style="position: fixed; visibility: visible; z-index: 10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
+    <img class="centered-grid" id="starBackground" src="../assets/StarBackground.jpg" style="position: fixed; visibility: hidden; z-index: -10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;">
 </div>
 <body id="body" style="visibility: hidden;">
 	<div class="wrap-everything">
@@ -204,99 +204,11 @@
 
 						<!-- Start your content here. -->
 						
-							<h1 id="home">Home</h1>
-							<h2>Terran Space Command wants you!</h2>
-							<p>American Heritage Discovery Space Center inspires a deeper connection to STEM, history, and social studies through simulated space adventures.</p>
-							<p>Find your place in the stars as the captain and crew of the UNS Discovery.</p>
+							<h1 id="missions">Missions</h1>
+							<h2>In development</h2>
+							<p>This section is currently in progress! Please check back later.</p>
+							<p>We will list our available missions here.</p>
 							<br>
-							<div class="top-display-bottom">
-								<div class="bar-1"></div>
-								<div class="bar-2"></div>
-								<div class="bar-3"></div>
-								<div class="bar-4"></div>
-								<div class="bar-5"></div>	
-							</div>
-							<div class="spacer">
-								<div class="space-1"></div>
-								<div class="space-2"></div>
-								<div class="space-3"></div>
-								<div class="space-4"></div>
-							</div>
-							<div class="bar-runner">
-								<div class="bar-6"></div>
-								<div class="bar-7"></div>
-								<div class="bar-8"></div>
-								<div class="bar-9"></div>
-								<div class="bar-10"></div>
-							</div>
-							<h1 id="about">About</h1>
-							<h2>Our Philosophy</h2>
-							<p>Our mission is to inspire deep, lasting, and transformative education. At American Heritage Discovery Space Center, we believe learning becomes permanent when it comes from within. As Isaac Asimov put it, “Self-education is…the only kind of education there is.”</p>
-							<p>The Discovery Simulator was built to catalyze this kind of learning. Attendees act as the captain and crew of the UNS Discovery, a fictional 22nd-century starship, in a Choose-Your-Own-Adventure-style movie. They work together to complete a mission, fulfilling various roles such as captain, pilot, communications, engineer, security, and more. Each mission is full of drama, adventure, and excitement while being developed around complex themes, historical events, and real science. By mixing theater and drama with learning, the missions seek to inspire each crew member to look deeper into the topics and concepts.</p>
-							<br>
-							<h2>Our Program</h2>
-							<p>American Heritage School is a K-12 private school.</p>
-							<p>During the daytime, 5th through 8th grade students attend the simulator as part of their science class curriculum. Daytime missions are hour-long episodes spaced out by a few weeks. Between episodes, special laboratory experiences inspired by and relevant to the mission explore the themes and concepts therein.</p>
-							<p>High school students act as staff members, actors, and content creators for the simulators. We believe that every high school student should graduate with a marketable skill, and the Discovery Space Center seeks to develop such skills in our students. The simulator and its operations provide an endless array of projects for students to solve, exposing them to real-world complexity without real-world consequences. </p>
-							<div>High school students enroll in one of four guilds as follows:
-								<ul>- Content Guild: research and write content-rich missions; create scientifically plausible solar systems and worlds; write lore; and any other information creation needs.</ul>
-								<ul>- Visual Effects Guild: create visual effects, motion graphics, film clips, CG models, etc. Students use Blender, Adobe Creative Cloud, Unity, Unreal Engine, and more.</ul>
-								<ul>- Coding Guild: code controls, microcontrollers, and Raspberry Pi's for the simulators.</ul>
-								<ul>- Construction Guild: build set pieces, props, costumes. Students use 3D CAD, 3D printing, power tools, CNC, woodworking techniques, soldering, and more.</ul>
-							</div>
-							<p>Naturally, our simulators are also available after school and during the summer for private bookings, birthday parties, corporate events, and summer camps. These simulators are fun, and using them often keeps the excitement around them high, a key ingredient to fulfilling our mission.</p>
-							<br>
-							<div class="top-display-bottom">
-								<div class="bar-1"></div>
-								<div class="bar-2"></div>
-								<div class="bar-3"></div>
-								<div class="bar-4"></div>
-								<div class="bar-5"></div>	
-							</div>
-							<div class="spacer">
-								<div class="space-1"></div>
-								<div class="space-2"></div>
-								<div class="space-3"></div>
-								<div class="space-4"></div>
-							</div>
-							<div class="bar-runner">
-								<div class="bar-6"></div>
-								<div class="bar-7"></div>
-								<div class="bar-8"></div>
-								<div class="bar-9"></div>
-								<div class="bar-10"></div>
-							</div>
-							<h1 id="gallery">Gallery</h1>
-							<h2>The USS Disovery</h2>
-							<p>Images of the USS Disovery:</p>
-							<div class="flex flex-row" style="display: flex; justify-content: space-evenly;">
-								<div style="display: flex; flex-wrap: wrap; gap: 10px; width: 50%; align-content: flex-start;">
-									<img src="../assets/Flight Gallery/IMG_20240813_153316_849.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
-									<img src="../assets/Flight Gallery/IMG_20240813_153316_914.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
-									<img src="../assets/Flight Gallery/IMG_20240813_153316_951.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
-									<img src="../assets/Flight Gallery/IMG_20240813_153316_971.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
-									<img src="../assets/Flight Gallery/IMG_20240813_153317_022.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
-									<img src="../assets/Flight Gallery/IMG_20240813_153317_051.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
-									<img src="../assets/Flight Gallery/IMG_20240813_153317_067.jpg" style="width: 150px; height: 150px; z-index: 0" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
-								</div>
-								<div style="width: 50%; height: 50%;">
-									<img id="imageStage" src="../assets/Flight Gallery/IMG_20240813_153316_849.jpg" style="width: 100%; height: auto;">
-								</div>
-							</div>
-							<script>
-								function changeStage() {
-									var image = document.getElementById("imageStage");
-									image.src = event.target.src;
-								}
-
-								function showSelectionFade() {
-									event.target.style.opacity = "0.5";
-								}
-
-								function resetOpacity() {
-									event.target.style.opacity = "1";
-								}
-							</script>
 
 						<!-- End content area -->						
 
