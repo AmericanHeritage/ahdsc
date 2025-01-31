@@ -48,11 +48,17 @@
 
 	var exitJumpVideo = document.getElementById("exitWarpStart");
 	var missionButton = document.getElementById("missionButton");
+	var missionLink = document.getElementById("missionLink");
 
 	missionButton.onclick = function(event) {
                 event.preventDefault();
                 changePage('../pages/missionList.html', exitJumpVideo);
-            }
+	}
+
+	missionLink.onclick = function(event) {
+                event.preventDefault();
+                changePage('../pages/missionList.html', exitJumpVideo);
+	}
         }
 
         function changePage(newPage, exitJumpVideo) {
@@ -232,7 +238,7 @@
 							<h1 id="missions">Missions</h1>
 							<h2>Come take a look at our missions!</h2>
 							<p>Interested in booking a mission, but not sure which story you want to do? We got you covered!</p>
-							<p>Come take a look at our mission list by clicking the "Missions" button in the top left corner.</p>
+							<p>Come take a look at our mission list by clicking the "Missions" button in the top left corner or by following <a id="missionLink" style="cursor: pointer;">this link.</a></p>
 							<br>
 							<div class="top-display-bottom">
 								<div class="bar-1"></div>
