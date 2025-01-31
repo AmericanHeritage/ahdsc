@@ -108,7 +108,39 @@
 	<video class="centered-grid" id="warpJump" preload="auto" src="../assets/WarpJump.mp4" muted="true" style="position: fixed; visibility: hidden; z-index: 100; opacity: 0; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
     <video class="centered-grid" id="exitWarpEnd" preload="auto" src="../assets/ExitJumpEnd.mp4" muted="true" autoplay="true" style="position: fixed; visibility: visible; z-index: 10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
     <img class="centered-grid" id="starBackground" src="../assets/StarBackground.jpg" style="position: fixed; visibility: hidden; z-index: -10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;">
+    <img id="Planet" src="../assets/Earth.png" style="position: fixed; z-index: -9; width: 50vw; margin: 60vh 0px 0px -10vw">
 </div>
+<script>
+    var planet = document.getElementById("Planet");
+    var position = 0;
+    var direction = 1;
+    var speed = 0.5;
+    var amplitude = 35;
+    var pauseDuration = 200; // pause duration in milliseconds
+    var isPaused = false;
+    var frequency = 0.02;
+    var rotation = 0;
+    var rotationSpeed = 0.05;
+
+    function animatePlanet() {
+        if (!isPaused) {
+            position += direction * speed;
+            if (Math.abs(position) >= amplitude) {
+                direction *= -1;
+                isPaused = true;
+                setTimeout(function() {
+                    isPaused = false;
+                }, pauseDuration);
+            }
+        }
+        rotation += rotationSpeed;
+        var offset = amplitude * Math.sin(frequency * position);
+        planet.style.transform = `translateY(${offset}px) rotate(${rotation}deg)`;
+        requestAnimationFrame(animatePlanet);
+    }
+
+    animatePlanet();
+</script>
 <body id="body" style="visibility: hidden;">
 	<div class="wrap-everything">
 		<section id="column-3-standard">
