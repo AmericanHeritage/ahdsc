@@ -110,15 +110,11 @@
 	<video class="centered-grid" id="warpJump" preload="auto" src="../assets/WarpJump.mp4" muted="true" style="position: fixed; visibility: hidden; z-index: 100; opacity: 0; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
     <video class="centered-grid" id="exitWarpEnd" preload="auto" src="../assets/ExitJumpEnd.mp4" muted="true" autoplay="true" style="position: fixed; visibility: visible; z-index: 10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
     <img class="centered-grid" id="starBackground" src="../assets/StarBackground.jpg" style="position: fixed; visibility: hidden; z-index: -10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;">
-    <img id="Planet" src="../assets/Systems/Earth.png" style="position: fixed; z-index: -9; width: 50vw; margin: -20vh 0px 0px -25vw">
-    <img id="Sun" src="../assets/Systems/Sun.png" style="position: fixed; z-index: -9; width: 100vw; margin: -75vh 0px 0px 70vw">
-    <img id="Moon" src="../assets/Systems/Moon.png" style="position: fixed; z-index: -9; width: 20vw; margin: 50vh 0px 0px 40vw">
+    <img id="Planet" src="../assets/Systems/Gaia Prime.png" style="position: fixed; z-index: -9; width: 50vw; margin: -20vh 0px 0px -25vw">
+    <img id="Sun" src="../assets/Systems/Red Dwarf.png" style="position: fixed; z-index: -9; width: 100vw; margin: -75vh 0px 0px 70vw">
+    <img id="Moon" src="../assets/Systems/Antimatter Moon.png" style="position: fixed; z-index: -9; width: 20vw; margin: 50vh 0px 0px 40vw">
 </div>
 <script>
-    var planet = document.getElementById("Planet");
-    var sun = document.getElementById("Sun");
-    var moon = document.getElementById("Moon");
-
     class CelestialBody {
         constructor(element, positionX, positionY, directionX, directionY, speedX, speedY, amplitudeX, amplitudeY, pauseDuration, isPausedX, isPausedY, frequency, rotation, rotationSpeed, scrollSpeed) {
             this.element = element;
