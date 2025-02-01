@@ -101,10 +101,34 @@
 		height: 100vh;
 		width: 100vw;
 	}
+
+	.navButton {
+		display: inline-block;
+		background-color: #000;
+		border-width: 3px;
+		border-style: solid;
+		border-color: var(--orange);
+		min-height: 20px;
+		font-weight: bold;
+		text-align: center;
+		line-height: 1.1;
+		padding: 10px 10px 11px 5px;
+		text-decoration: none;
+		font-size: var(--nav-font);
+		color: var(--orange); 
+		max-width: 150px;
+		flex: 1;
+	}
+
+	.navButton:hover {
+		filter: none;
+		border-color: var(--pale-orange);
+		color: var(--pale-orange);
+	}
 </style>
 <div id="settingsArea" style="visibility: hidden;">
 	<div id="contentBlocker" style="background-color: black; opacity: .75; position: fixed; z-index: 11; top: 0; bottom: 0; left: 0; right: 0; margin: 0px 0px 0px 0px"></div>
-	<div id="exitSettings" class="panel-1 pageSettings" style="z-index: 12; position: fixed; text-align: center; cursor: pointer;">Exit</div>
+	<div id="exitSettings" class="panel-1 pageSettings" style="z-index: 12; position: fixed; text-align: center; cursor: pointer; top: 5px; left: 5px;">Exit</div>
 </div>
 <div id="videos">
 	<video class="centered-grid" id="warpJump" preload="auto" src="../assets/WarpJump.mp4" muted="true" style="position: fixed; visibility: hidden; z-index: 100; opacity: 0; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
@@ -177,27 +201,26 @@
     });
     
 </script>
-<body id="body" style="visibility: hidden;">
+<div style="position: fixed; z-index: 9; width: 100%; top: 0; background-color: black; left: 0px">
+	<nav id="primary-nav" style="background-color: black; width: 100%; display: flex; justify-content: space-evenly;">
+		<a href="../pages/mainPage.html" class="navButton" style="cursor: pointer; text-align: center;">Home</a>
+		<a id="missionButton" class="navButton" style="cursor: pointer; text-align: center;">Missions</a>
+		<a href="../pages/pages/missionBookings.html" class="navButton" style="cursor: pointer; text-align: center;">Bookings</a>
+		<a href="../pages/pages/houseBios.html" class="navButton" style="cursor: pointer; text-align: center;">Lore</a>
+		<a href="../pages/pages/donations.html" class="navButton" style="cursor: pointer; text-align: center;">Donate</a>
+		<a href="../pages/pages/aboutUs.html" class="navButton" style="cursor: pointer; text-align: center;">About Us</a>
+	</nav>
+</div>
+<body id="body" style="visibility: hidden; margin-top: 50px;">
 	<div class="wrap-everything">
 		<section id="column-3-standard">
 			<div class="top-wrapper">
 				<div class="top-display">
 					<div class="top-display-left">
-						<div style="position: fixed; z-index: 9; width: var(--sidebar); top: 0">
-							<nav id="primary-nav">
-								<a id="homeButton" style="cursor: pointer;">Home</a>
-								<a id="missionButton" style="cursor: pointer;">Missions</a>
-								<a href="../pages/pages/missionBookings.html" style="cursor: pointer;">Bookings</a>
-								<a href="../pages/pages/houseBios.html" style="cursor: pointer;">Lore</a>
-								<a href="../pages/pages/donations.html" style="cursor: pointer;">Donate</a>
-								<a href="../pages/pages/aboutUs.html" style="cursor: pointer;">About Us</a>
-								<style>
-								</style>
-							</nav>
-							<div class="panel-wrapper">
-								<div id="settings" class="panel-1 pageSettings" style="cursor: pointer;">Page Settings</div>
-							</div>
-						</div>
+                        <div class="panel-wrapper">
+                            <div id="settings" class="panel-1 pageSettings" style="cursor: pointer;">Page Settings</div>
+                        </div>
+                        <div class="panel-8"><span class="hop"></span></div>
 					</div>
 					<div class="top-display-right">
 						<div class="top-display-content">
