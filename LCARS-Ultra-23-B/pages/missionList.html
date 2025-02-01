@@ -75,6 +75,8 @@
                     window.location.href = newPage;
                 }, 2150);
         }
+
+        
 </script>
 <style>
 	:root {
@@ -108,38 +110,76 @@
 	<video class="centered-grid" id="warpJump" preload="auto" src="../assets/WarpJump.mp4" muted="true" style="position: fixed; visibility: hidden; z-index: 100; opacity: 0; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
     <video class="centered-grid" id="exitWarpEnd" preload="auto" src="../assets/ExitJumpEnd.mp4" muted="true" autoplay="true" style="position: fixed; visibility: visible; z-index: 10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
     <img class="centered-grid" id="starBackground" src="../assets/StarBackground.jpg" style="position: fixed; visibility: hidden; z-index: -10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;">
-    <img id="Planet" src="../assets/Earth.png" style="position: fixed; z-index: -9; width: 50vw; margin: 60vh 0px 0px -10vw">
+    <img id="Planet" src="../assets/Earth.png" style="position: fixed; z-index: -9; width: 50vw; margin: -20vh 0px 0px -25vw">
+    <img id="Sun" src="../assets/Sun.png" style="position: fixed; z-index: -9; width: 100vw; margin: -75vh 0px 0px 70vw">
+    <img id="Moon" src="../assets/Moon.png" style="position: fixed; z-index: -9; width: 20vw; margin: 50vh 0px 0px 40vw">
 </div>
 <script>
     var planet = document.getElementById("Planet");
-    var position = 0;
-    var direction = 1;
-    var speed = 0.3;
-    var amplitude = 25;
-    var pauseDuration = 200; // pause duration in milliseconds
-    var isPaused = false;
-    var frequency = 0.02;
-    var rotation = 0;
-    var rotationSpeed = 0.03;
+    var sun = document.getElementById("Sun");
+    var moon = document.getElementById("Moon");
 
-    function animatePlanet() {
-        if (!isPaused) {
-            position += direction * speed;
-            if (Math.abs(position) >= amplitude) {
-                direction *= -1;
-                isPaused = true;
-                setTimeout(function() {
-                    isPaused = false;
-                }, pauseDuration);
-            }
+    class CelestialBody {
+        constructor(element, positionX, positionY, directionX, directionY, speedX, speedY, amplitudeX, amplitudeY, pauseDuration, isPausedX, isPausedY, frequency, rotation, rotationSpeed, scrollSpeed) {
+            this.element = element;
+            this.positionX = positionX;
+            this.positionY = positionY;
+            this.directionX = directionX;
+            this.directionY = directionY;
+            this.speedX = speedX;
+            this.speedY = speedY;
+            this.amplitudeX = amplitudeX;
+            this.amplitudeY = amplitudeY;
+            this.pauseDuration = pauseDuration;
+            this.isPausedX = isPausedX;
+            this.isPausedY = isPausedY;
+            this.frequency = frequency;
+            this.rotation = rotation;
+            this.rotationSpeed = rotationSpeed;
+            this.scrollSpeed = scrollSpeed;
         }
-        rotation += rotationSpeed;
-        var offset = amplitude * Math.sin(frequency * position);
-        planet.style.transform = `translateY(${offset}px) rotate(${rotation}deg)`;
-        requestAnimationFrame(animatePlanet);
     }
 
-    animatePlanet();
+    var celestialBodies = [
+        new CelestialBody(document.getElementById("Planet"), 0, 0, 1, 1, 0.3, 0.3, 25, 25, 200, false, false, 0.02, 0, 0.03, -0.23),
+        new CelestialBody(document.getElementById("Sun"), 0, 0, 1, 1, 0.2, 0.2, 30, 30, 200, false, false, 0.015, 0, -0.01, -0.14),
+        new CelestialBody(document.getElementById("Moon"), 0, 0, 1, 1, 0.15, 0.35, 30, 10, 200, false, false, 0.018, 0, -0.03, -0.06)
+    ];
+
+    function animateCelestialBody(body) {
+        if (!body.isPausedX) {
+            body.positionX += body.directionX * body.speedX;
+            if (Math.abs(body.positionX) >= body.amplitudeX) {
+                body.directionX *= -1;
+                body.isPausedX = true;
+                setTimeout(function() {
+                    body.isPausedX = false;
+                }, body.pauseDuration);
+            }
+        }
+        if (!body.isPausedY) {
+            body.positionY += body.directionY * body.speedY;
+            if (Math.abs(body.positionY) >= body.amplitudeY) {
+                body.directionY *= -1;
+                body.isPausedY = true;
+                setTimeout(function() {
+                    body.isPausedY = false;
+                }, body.pauseDuration);
+            }
+        }
+        body.rotation += body.rotationSpeed;
+        var offsetX = body.amplitudeX * Math.sin(body.frequency * body.positionX);
+        var offsetY = body.amplitudeY * Math.sin(body.frequency * body.positionY) - (window.scrollY * body.scrollSpeed);
+        body.element.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${body.rotation}deg)`;
+        requestAnimationFrame(function() {
+            animateCelestialBody(body);
+        });
+    }
+
+    celestialBodies.forEach(function(body) {
+        animateCelestialBody(body);
+    });
+    
 </script>
 <body id="body" style="visibility: hidden;">
 	<div class="wrap-everything">
