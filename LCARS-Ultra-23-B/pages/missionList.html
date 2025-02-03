@@ -49,13 +49,16 @@
         var warpJump = document.getElementById("warpJump");
         var missionButton = document.getElementById("missionButton");
         var homeButton = document.getElementById("homeButton");
+		var starBackground = document.getElementById("starBackground");
 
         homeButton.onclick = function (event) {
             event.preventDefault();
             body.style.transition = "opacity 1s"
+			starBackground.style.transition = "opacity 1s";
+			starBackground.style.opacity = "1";
             body.style.opacity = "0";
-            body.style.visibility = "hidden";
             setTimeout(function() {
+				body.style.visibility = "hidden";
                 window.location.href = "../pages/mainPage.html"
             }, 1000);
         }
@@ -203,7 +206,7 @@
 </script>
 <div style="position: fixed; z-index: 9; width: 100%; top: 0; background-color: black; left: 0px">
 	<nav id="primary-nav" style="background-color: black; width: 100%; display: flex; justify-content: space-evenly;">
-		<a href="../pages/mainPage.html" class="navButton" style="cursor: pointer; text-align: center;">Home</a>
+		<a id="homeButton" class="navButton" style="cursor: pointer; text-align: center;">Home</a>
 		<a id="missionButton" class="navButton" style="cursor: pointer; text-align: center;">Missions</a>
 		<a href="../pages/pages/missionBookings.html" class="navButton" style="cursor: pointer; text-align: center;">Bookings</a>
 		<a href="../pages/pages/houseBios.html" class="navButton" style="cursor: pointer; text-align: center;">Lore</a>
