@@ -49,6 +49,23 @@
 	var exitJumpVideo = document.getElementById("exitWarpStart");
 	var missionButton = document.getElementById("missionButton");
 	var missionLink = document.getElementById("missionLink");
+	var homeButton = document.getElementById("homeButton");
+	var exitWarpEnd = document.getElementById("exitWarpEnd");
+
+	homeButton.onclick = function (event) {
+            event.preventDefault();
+			exitJumpVideo.style.visibility = "visible";
+			exitJumpVideo.play();
+			exitJumpVideo.style.transition = "opacity 1s";
+			exitJumpVideo.style.opacity = "1";
+            setTimeout(function() {
+				exitWarpEnd.style.visibility = "visible";
+				exitWarpEnd.play();
+				setTimeout(function() {
+                	window.location.href = "../pages/mainPage.html"
+				}, 4000);
+            }, 2000);
+        }
 
 	missionButton.onclick = function(event) {
                 event.preventDefault();
@@ -127,10 +144,11 @@
 	<video class="centered-grid" id="exitWarpStart" preload="auto" src="../assets/ExitJumpStart.mp4" muted="true" style="position: fixed; visibility: hidden; z-index: 100; opacity: 0; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
 	<video class="centered-grid" id="warpJumpVideo" preload="auto" src="../assets/WarpJump.mp4" muted="true" autoplay="true" style="position: fixed; visibility: visible; z-index: 10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
 	<video class="centered-grid" id="warpLoop" preload="auto" src="../assets/WarpStarsLoop.mov" muted="true" autoplay="true" loop="true" style="position: fixed; visibility: hidden; z-index: -10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
+	<video class="centered-grid" id="exitWarpEnd" preload="auto" src="../assets/ExitJumpEnd.mp4" muted="true" style="position: fixed; visibility: hidden; z-index: 110; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
 </div>
 <div style="position: fixed; z-index: 9; width: 100%; top: 0; background-color: black; left: 0px">
 	<nav id="primary-nav" style="background-color: black; width: 100%; display: flex; justify-content: space-evenly;">
-		<a href="../pages/mainPage.html" class="navButton" style="cursor: pointer; text-align: center;">Home</a>
+		<a id="homeButton" class="navButton" style="cursor: pointer; text-align: center;">Home</a>
 		<a id="missionButton" class="navButton" style="cursor: pointer; text-align: center;">Missions</a>
 		<a href="../pages/pages/missionBookings.html" class="navButton" style="cursor: pointer; text-align: center;">Bookings</a>
 		<a href="../pages/pages/houseBios.html" class="navButton" style="cursor: pointer; text-align: center;">Lore</a>
