@@ -141,6 +141,8 @@
 	:root {
 		--lighterGray: #c1c1c1;
 		--lightGray: #707070;
+		--navBlue: #1e90ff;
+		--navLightBlue: #82c5fc;
 	}
 
 	.pageSettings:hover {
@@ -184,10 +186,35 @@
 		border-color: var(--pale-orange);
 		color: var(--pale-orange);
 	}
+
+    .activeNav {
+		display: inline-block;
+		background-color: #000;
+		border-width: 3px;
+		border-style: solid;
+		border-color: var(--navBlue) !important;
+		min-height: 20px;
+		font-weight: bold;
+		text-align: center;
+		line-height: 1.1;
+		padding: 10px 10px 11px 5px;
+		text-decoration: none;
+		font-size: var(--nav-font);
+		color: var(--navBlue) !important;
+		max-width: 150px;
+		flex: 1;
+	}
+
+	.activeNav:hover {
+		filter: none;
+		border-color: var(--navLightBlue) !important;
+		color: var(--navLightBlue) !important;
+	}
 </style>
 <div id="settingsArea" style="visibility: hidden;">
 	<div id="contentBlocker" style="background-color: black; opacity: .75; position: fixed; z-index: 11; top: 0; bottom: 0; left: 0; right: 0; margin: 0px 0px 0px 0px"></div>
 	<div id="exitSettings" class="panel-1 pageSettings" style="z-index: 12; position: fixed; text-align: center; cursor: pointer; top: 5px; left: 5px">Exit</div>
+	<div id="reducedMotion" class=""></div>
 </div>
 <div id="videos">
 	<video class="centered-grid" id="exitWarpStart" preload="auto" src="../assets/ExitJumpStart.mp4" muted="true" style="position: fixed; visibility: hidden; z-index: 100; opacity: 0; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
@@ -197,7 +224,7 @@
 </div>
 <div style="position: fixed; z-index: 9; width: 100%; top: 0; background-color: black; left: 0px">
 	<nav id="primary-nav" style="background-color: black; width: 100%; display: flex; justify-content: space-evenly;">
-		<a id="homeButton" class="navButton" style="cursor: pointer; text-align: center;">Home</a>
+		<a id="homeButton" class="activeNav" style="cursor: pointer; text-align: center;">Home</a>
 		<a id="missionButton" class="navButton" style="cursor: pointer; text-align: center;">Missions</a>
 		<a id="bookingsButton" class="navButton" style="cursor: pointer; text-align: center;">Bookings</a>
 		<a id="loreButton" class="navButton" style="cursor: pointer; text-align: center;">Lore</a>
@@ -221,6 +248,7 @@
 							<div class="top-arch-1">
 								<div class="top-arch-2">
 									<div class="top-arch-content">
+										<h1 style="text-align: center;">HOME</h1>
 										<img src="../assets/AHDSC.png" class="sfc" id="sfc">
 										<div class="lcars-heading">American Heritage Discovery Space Center</div>
 										<div class="lcars-access">
