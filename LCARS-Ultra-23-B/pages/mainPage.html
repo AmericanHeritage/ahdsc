@@ -32,51 +32,85 @@
 			document.body.style.overflow = "auto";
 		}
 
-	var settings = document.getElementById("settings");
-	var settingsArea = document.getElementById("settingsArea");
-	var exitSettings = document.getElementById("exitSettings");
+		var settings = document.getElementById("settings");
+		var settingsArea = document.getElementById("settingsArea");
+		var exitSettings = document.getElementById("exitSettings");
 
-	settings.onclick = function() {
-			settingsArea.style.visibility = "visible";
-			document.body.style.overflow = "hidden";
-	}
-
-	exitSettings.onclick = function() {
-			settingsArea.style.visibility = "hidden";
-			document.body.style.overflow = "auto";
+		settings.onclick = function() {
+				settingsArea.style.visibility = "visible";
+				document.body.style.overflow = "hidden";
 		}
 
-	var exitJumpVideo = document.getElementById("exitWarpStart");
-	var missionButton = document.getElementById("missionButton");
-	var missionLink = document.getElementById("missionLink");
-	var homeButton = document.getElementById("homeButton");
-	var exitWarpEnd = document.getElementById("exitWarpEnd");
+		exitSettings.onclick = function() {
+				settingsArea.style.visibility = "hidden";
+				document.body.style.overflow = "auto";
+			}
 
-	homeButton.onclick = function (event) {
-            event.preventDefault();
-			exitJumpVideo.style.visibility = "visible";
-			exitJumpVideo.play();
-			exitJumpVideo.style.transition = "opacity 1s";
-			exitJumpVideo.style.opacity = "1";
-            setTimeout(function() {
-				exitWarpEnd.style.visibility = "visible";
-				exitWarpEnd.play();
+		var exitJumpVideo = document.getElementById("exitWarpStart");
+		var exitWarpEnd = document.getElementById("exitWarpEnd");
+
+		var missionButton = document.getElementById("missionButton");
+		var missionLink = document.getElementById("missionLink");
+
+		var homeButton = document.getElementById("homeButton");
+
+		var bookingsButton = document.getElementById("bookingsButton");
+		var bookingsLink = document.getElementById("bookingLink");
+
+		var loreButton = document.getElementById("loreButton");
+
+		var donateButton = document.getElementById("donateButton");
+
+		var aboutButton = document.getElementById("aboutButton");
+
+		homeButton.onclick = function (event) {
+				event.preventDefault();
+				exitJumpVideo.style.visibility = "visible";
+				exitJumpVideo.play();
+				exitJumpVideo.style.transition = "opacity 1s";
+				exitJumpVideo.style.opacity = "1";
 				setTimeout(function() {
-                	window.location.href = "../pages/mainPage.html"
-				}, 4000);
-            }, 2000);
-        }
+					exitWarpEnd.style.visibility = "visible";
+					exitWarpEnd.play();
+					setTimeout(function() {
+						window.location.href = "../pages/mainPage.html"
+					}, 4000);
+				}, 2000);
+			}
 
-	missionButton.onclick = function(event) {
-                event.preventDefault();
-                changePage('../pages/missionList.html', exitJumpVideo);
-	}
+		missionButton.onclick = function(event) {
+			event.preventDefault();
+			changePage('../pages/missionList.html', exitJumpVideo);
+		}
+		missionLink.onclick = function(event) {
+			event.preventDefault();
+			changePage('../pages/missionList.html', exitJumpVideo);
+		}
 
-	missionLink.onclick = function(event) {
-                event.preventDefault();
-                changePage('../pages/missionList.html', exitJumpVideo);
-	}
-        }
+		bookingsButton.onclick = function(event) {
+			event.preventDefault();
+			changePage('../pages/missionBookings.html', exitJumpVideo);
+		}
+		bookingsLink.onclick = function(event) {
+			event.preventDefault();
+			changePage('../pages/missionBookings.html', exitJumpVideo);
+		}
+
+		loreButton.onclick = function(event) {
+			event.preventDefault();
+			changePage('../pages/lore.html', exitJumpVideo);
+		}
+
+		donateButton.onclick = function(event) {
+			event.preventDefault();
+			changePage('../pages/donations.html', exitJumpVideo);
+		}
+
+		aboutButton.onclick = function(event) {
+			event.preventDefault()
+			changePage('../pages/aboutUs.html', exitJumpVideo);
+		}
+}
 
         function changePage(newPage, exitJumpVideo) {
 				exitJumpVideo.style.visibility = "visible";
@@ -150,10 +184,10 @@
 	<nav id="primary-nav" style="background-color: black; width: 100%; display: flex; justify-content: space-evenly;">
 		<a id="homeButton" class="navButton" style="cursor: pointer; text-align: center;">Home</a>
 		<a id="missionButton" class="navButton" style="cursor: pointer; text-align: center;">Missions</a>
-		<a href="../pages/pages/missionBookings.html" class="navButton" style="cursor: pointer; text-align: center;">Bookings</a>
-		<a href="../pages/pages/houseBios.html" class="navButton" style="cursor: pointer; text-align: center;">Lore</a>
-		<a href="../pages/pages/donations.html" class="navButton" style="cursor: pointer; text-align: center;">Donate</a>
-		<a href="../pages/pages/aboutUs.html" class="navButton" style="cursor: pointer; text-align: center;">About Us</a>
+		<a id="bookingsButton" class="navButton" style="cursor: pointer; text-align: center;">Bookings</a>
+		<a id="loreButton" class="navButton" style="cursor: pointer; text-align: center;">Lore</a>
+		<a id="donateButton" class="navButton" style="cursor: pointer; text-align: center;">Donate</a>
+		<a id="aboutButton" class="navButton" style="cursor: pointer; text-align: center;">About Us</a>
 	</nav>
 </div>
 <body id="body" style="visibility: hidden; margin-top: 50px;"></body>
@@ -279,7 +313,32 @@
 							<h1 id="missions">Missions</h1>
 							<h2>Come take a look at our missions!</h2>
 							<p>Interested in booking a mission, but not sure which story you want to do? We got you covered!</p>
-							<p>Come take a look at our mission list by clicking the "Missions" button in the top left corner or by following <a id="missionLink" style="cursor: pointer;">this link.</a></p>
+							<p>Come take a look at our mission list by clicking the "Missions" button at the top or by following <a id="missionLink" style="cursor: pointer;">this link</a>.</p>
+							<br>
+							<div class="top-display-bottom">
+								<div class="bar-1"></div>
+								<div class="bar-2"></div>
+								<div class="bar-3"></div>
+								<div class="bar-4"></div>
+								<div class="bar-5"></div>	
+							</div>
+							<div class="spacer">
+								<div class="space-1"></div>
+								<div class="space-2"></div>
+								<div class="space-3"></div>
+								<div class="space-4"></div>
+							</div>
+							<div class="bar-runner">
+								<div class="bar-6"></div>
+								<div class="bar-7"></div>
+								<div class="bar-8"></div>
+								<div class="bar-9"></div>
+								<div class="bar-10"></div>
+							</div>
+							<h1 id="missions">Bookings</h1>
+							<h2>Come book a flight today!</h2>
+							<p>Would you like to come fly a mission?</p>
+							<p>Come book a flight by clicking the "Bookings" button at the top or by following <a id="bookingLink" style="cursor: pointer;">this link</a>.</p>
 							<br>
 							<div class="top-display-bottom">
 								<div class="bar-1"></div>
