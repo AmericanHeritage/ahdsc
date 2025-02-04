@@ -58,10 +58,13 @@
 		var bookingsLink = document.getElementById("bookingLink");
 
 		var loreButton = document.getElementById("loreButton");
+		var loreLink = document.getElementById("loreLink");
 
 		var donateButton = document.getElementById("donateButton");
+		var donateLink = document.getElementById("donateLink");
 
 		var aboutButton = document.getElementById("aboutButton");
+		var aboutLink = document.getElementById("aboutLink");
 
 		homeButton.onclick = function (event) {
 				event.preventDefault();
@@ -100,13 +103,25 @@
 			event.preventDefault();
 			changePage('../pages/lore.html', exitJumpVideo);
 		}
+		loreLink.onclick = function(event) {
+			event.preventDefault();
+			changePage('../pages/lore.html', exitJumpVideo);
+		}
 
 		donateButton.onclick = function(event) {
 			event.preventDefault();
 			changePage('../pages/donations.html', exitJumpVideo);
 		}
+		donateLink.onclick = function(event) {
+			event.preventDefault();
+			changePage('../pages/donations.html', exitJumpVideo);
+		}
 
 		aboutButton.onclick = function(event) {
+			event.preventDefault()
+			changePage('../pages/aboutUs.html', exitJumpVideo);
+		}
+		aboutLink.onclick = function(event) {
 			event.preventDefault()
 			changePage('../pages/aboutUs.html', exitJumpVideo);
 		}
@@ -310,6 +325,58 @@
 								<div class="bar-9"></div>
 								<div class="bar-10"></div>
 							</div>
+							<h1 id="gallery">Gallery</h1>
+							<h2>The USS Disovery</h2>
+							<p>Images of the USS Disovery:</p>
+							<div class="flex flex-row" style="display: flex; justify-content: space-evenly;">
+								<div style="display: flex; flex-wrap: wrap; gap: 10px; width: 50%; align-content: flex-start;">
+									<img src="../assets/Flight Gallery/IMG_20240813_153316_849.jpg" style="width: 150px; height: 150px; z-index: 0; cursor: pointer;" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
+									<img src="../assets/Flight Gallery/IMG_20240813_153316_914.jpg" style="width: 150px; height: 150px; z-index: 0; cursor: pointer;" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
+									<img src="../assets/Flight Gallery/IMG_20240813_153316_951.jpg" style="width: 150px; height: 150px; z-index: 0; cursor: pointer;" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
+									<img src="../assets/Flight Gallery/IMG_20240813_153316_971.jpg" style="width: 150px; height: 150px; z-index: 0; cursor: pointer;" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
+									<img src="../assets/Flight Gallery/IMG_20240813_153317_022.jpg" style="width: 150px; height: 150px; z-index: 0; cursor: pointer;" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
+									<img src="../assets/Flight Gallery/IMG_20240813_153317_051.jpg" style="width: 150px; height: 150px; z-index: 0; cursor: pointer;" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
+									<img src="../assets/Flight Gallery/IMG_20240813_153317_067.jpg" style="width: 150px; height: 150px; z-index: 0; cursor: pointer;" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
+								</div>
+								<div style="width: 50%; height: 50%;">
+									<img id="imageStage" src="../assets/Flight Gallery/IMG_20240813_153316_849.jpg" style="width: 100%; height: auto;">
+								</div>
+							</div>
+							<script>
+								function changeStage() {
+									var image = document.getElementById("imageStage");
+									image.src = event.target.src;
+								}
+
+								function showSelectionFade() {
+									event.target.style.opacity = "0.5";
+								}
+
+								function resetOpacity() {
+									event.target.style.opacity = "1";
+								}
+							</script>
+							<br>
+							<div class="top-display-bottom">
+								<div class="bar-1"></div>
+								<div class="bar-2"></div>
+								<div class="bar-3"></div>
+								<div class="bar-4"></div>
+								<div class="bar-5"></div>	
+							</div>
+							<div class="spacer">
+								<div class="space-1"></div>
+								<div class="space-2"></div>
+								<div class="space-3"></div>
+								<div class="space-4"></div>
+							</div>
+							<div class="bar-runner">
+								<div class="bar-6"></div>
+								<div class="bar-7"></div>
+								<div class="bar-8"></div>
+								<div class="bar-9"></div>
+								<div class="bar-10"></div>
+							</div>
 							<h1 id="missions">Missions</h1>
 							<h2>Come take a look at our missions!</h2>
 							<p>Interested in booking a mission, but not sure which story you want to do? We got you covered!</p>
@@ -360,22 +427,10 @@
 								<div class="bar-9"></div>
 								<div class="bar-10"></div>
 							</div>
-							<h1 id="about">About</h1>
-							<h2>Our Philosophy</h2>
-							<p>Our mission is to inspire deep, lasting, and transformative education. At American Heritage Discovery Space Center, we believe learning becomes permanent when it comes from within. As Isaac Asimov put it, “Self-education is…the only kind of education there is.”</p>
-							<p>The Discovery Simulator was built to catalyze this kind of learning. Attendees act as the captain and crew of the UNS Discovery, a fictional 22nd-century starship, in a Choose-Your-Own-Adventure-style movie. They work together to complete a mission, fulfilling various roles such as captain, pilot, communications, engineer, security, and more. Each mission is full of drama, adventure, and excitement while being developed around complex themes, historical events, and real science. By mixing theater and drama with learning, the missions seek to inspire each crew member to look deeper into the topics and concepts.</p>
-							<br>
-							<h2>Our Program</h2>
-							<p>American Heritage School is a K-12 private school.</p>
-							<p>During the daytime, 5th through 8th grade students attend the simulator as part of their science class curriculum. Daytime missions are hour-long episodes spaced out by a few weeks. Between episodes, special laboratory experiences inspired by and relevant to the mission explore the themes and concepts therein.</p>
-							<p>High school students act as staff members, actors, and content creators for the simulators. We believe that every high school student should graduate with a marketable skill, and the Discovery Space Center seeks to develop such skills in our students. The simulator and its operations provide an endless array of projects for students to solve, exposing them to real-world complexity without real-world consequences. </p>
-							<div>High school students enroll in one of four guilds as follows:
-								<ul>- Content Guild: research and write content-rich missions; create scientifically plausible solar systems and worlds; write lore; and any other information creation needs.</ul>
-								<ul>- Visual Effects Guild: create visual effects, motion graphics, film clips, CG models, etc. Students use Blender, Adobe Creative Cloud, Unity, Unreal Engine, and more.</ul>
-								<ul>- Coding Guild: code controls, microcontrollers, and Raspberry Pi's for the simulators.</ul>
-								<ul>- Construction Guild: build set pieces, props, costumes. Students use 3D CAD, 3D printing, power tools, CNC, woodworking techniques, soldering, and more.</ul>
-							</div>
-							<p>Naturally, our simulators are also available after school and during the summer for private bookings, birthday parties, corporate events, and summer camps. These simulators are fun, and using them often keeps the excitement around them high, a key ingredient to fulfilling our mission.</p>
+							<h1 id="missions">Lore</h1>
+							<h2>Come take a look at our universe!</h2>
+							<p>Would you like to learn more about our stories and backgrounds? </p>
+							<p>Come learn about our lore by clicking the "Lore" button at the top or by following <a id="loreLink" style="cursor: pointer;">this link</a>.</p>
 							<br>
 							<div class="top-display-bottom">
 								<div class="bar-1"></div>
@@ -397,37 +452,35 @@
 								<div class="bar-9"></div>
 								<div class="bar-10"></div>
 							</div>
-							<h1 id="gallery">Gallery</h1>
-							<h2>The USS Disovery</h2>
-							<p>Images of the USS Disovery:</p>
-							<div class="flex flex-row" style="display: flex; justify-content: space-evenly;">
-								<div style="display: flex; flex-wrap: wrap; gap: 10px; width: 50%; align-content: flex-start;">
-									<img src="../assets/Flight Gallery/IMG_20240813_153316_849.jpg" style="width: 150px; height: 150px; z-index: 0; cursor: pointer;" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
-									<img src="../assets/Flight Gallery/IMG_20240813_153316_914.jpg" style="width: 150px; height: 150px; z-index: 0; cursor: pointer;" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
-									<img src="../assets/Flight Gallery/IMG_20240813_153316_951.jpg" style="width: 150px; height: 150px; z-index: 0; cursor: pointer;" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
-									<img src="../assets/Flight Gallery/IMG_20240813_153316_971.jpg" style="width: 150px; height: 150px; z-index: 0; cursor: pointer;" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
-									<img src="../assets/Flight Gallery/IMG_20240813_153317_022.jpg" style="width: 150px; height: 150px; z-index: 0; cursor: pointer;" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
-									<img src="../assets/Flight Gallery/IMG_20240813_153317_051.jpg" style="width: 150px; height: 150px; z-index: 0; cursor: pointer;" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
-									<img src="../assets/Flight Gallery/IMG_20240813_153317_067.jpg" style="width: 150px; height: 150px; z-index: 0; cursor: pointer;" onclick="changeStage()" onmouseover="showSelectionFade()" onmouseout="resetOpacity()">
-								</div>
-								<div style="width: 50%; height: 50%;">
-									<img id="imageStage" src="../assets/Flight Gallery/IMG_20240813_153316_849.jpg" style="width: 100%; height: auto;">
-								</div>
+							<h1 id="missions">Donate</h1>
+							<h2>Please help support us!</h2>
+							<p>Would you like to donate to our cause?</p>
+							<p>Come donate by clicking the "Donate" button at the top or by following <a id="donateLink" style="cursor: pointer;">this link</a>.</p>
+							<br>
+							<div class="top-display-bottom">
+								<div class="bar-1"></div>
+								<div class="bar-2"></div>
+								<div class="bar-3"></div>
+								<div class="bar-4"></div>
+								<div class="bar-5"></div>	
 							</div>
-							<script>
-								function changeStage() {
-									var image = document.getElementById("imageStage");
-									image.src = event.target.src;
-								}
-
-								function showSelectionFade() {
-									event.target.style.opacity = "0.5";
-								}
-
-								function resetOpacity() {
-									event.target.style.opacity = "1";
-								}
-							</script>
+							<div class="spacer">
+								<div class="space-1"></div>
+								<div class="space-2"></div>
+								<div class="space-3"></div>
+								<div class="space-4"></div>
+							</div>
+							<div class="bar-runner">
+								<div class="bar-6"></div>
+								<div class="bar-7"></div>
+								<div class="bar-8"></div>
+								<div class="bar-9"></div>
+								<div class="bar-10"></div>
+							</div>
+							<h1 id="about">About Us</h1>
+							<h2>Come learn about our program!</h2>
+							<p>Would you like to learn more about what we do?</p>
+							<p>Take a look by clicking the "About Us" button at the top or by following <a id="aboutLink" style="cursor: pointer;">this link</a>.</p>
 
 						<!-- End content area -->						
 
