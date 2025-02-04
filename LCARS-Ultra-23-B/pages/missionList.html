@@ -50,22 +50,62 @@
         var missionButton = document.getElementById("missionButton");
         var homeButton = document.getElementById("homeButton");
 		var starBackground = document.getElementById("starBackground");
+		var bookingsButton = document.getElementById("bookingsButton");
+		var bookingLink = document.getElementById("bookingLink");
+		var loreButton = document.getElementById("loreButton");
+		var donateButton = document.getElementById("donateButton");
+		var aboutButton = document.getElementById("aboutButton");
+		var starOverlay = document.getElementById("starOverlay");
 
         homeButton.onclick = function (event) {
             event.preventDefault();
-            body.style.transition = "opacity 1s"
-			starBackground.style.transition = "opacity 1s";
-			starBackground.style.opacity = "1";
-            body.style.opacity = "0";
+			body.style.transition = "opacity 1s";
+			body.style.opacity = "0";
             setTimeout(function() {
-				body.style.visibility = "hidden";
                 window.location.href = "../pages/mainPage.html"
             }, 1000);
         }
 
-        missionButton.onclick = function(event) {
-                    event.preventDefault();
-                    changePage('../pages/missionList.html', warpJump);
+        if (missionButton) {
+            missionButton.onclick = function(event) {
+                event.preventDefault();
+                changePage('../pages/missionList.html', warpJump);
+            }
+        }
+
+        if (bookingsButton) {
+            bookingsButton.onclick = function(event) {
+                event.preventDefault();
+                changePage('../pages/missionBookings.html', warpJump);
+            }
+        }
+
+        if (bookingLink) {
+            bookingLink.onclick = function(event) {
+                event.preventDefault();
+                changePage('../pages/missionBookings.html', warpJump);
+            }
+        }
+
+        if (loreButton) {
+            loreButton.onclick = function(event) {
+                event.preventDefault();
+                changePage('../pages/lore.html', warpJump);
+            }
+        }
+
+        if (donateButton) {
+            donateButton.onclick = function(event) {
+                event.preventDefault();
+                changePage('../pages/donations.html', warpJump);
+            }
+        }
+
+        if (aboutButton) {
+            aboutButton.onclick = function(event) {
+                event.preventDefault();
+                changePage('../pages/aboutUs.html', warpJump);
+            }
         }
     }
 
@@ -208,10 +248,10 @@
 	<nav id="primary-nav" style="background-color: black; width: 100%; display: flex; justify-content: space-evenly;">
 		<a id="homeButton" class="navButton" style="cursor: pointer; text-align: center;">Home</a>
 		<a id="missionButton" class="navButton" style="cursor: pointer; text-align: center;">Missions</a>
-		<a href="../pages/pages/missionBookings.html" class="navButton" style="cursor: pointer; text-align: center;">Bookings</a>
-		<a href="../pages/pages/houseBios.html" class="navButton" style="cursor: pointer; text-align: center;">Lore</a>
-		<a href="../pages/pages/donations.html" class="navButton" style="cursor: pointer; text-align: center;">Donate</a>
-		<a href="../pages/pages/aboutUs.html" class="navButton" style="cursor: pointer; text-align: center;">About Us</a>
+		<a id="bookingsButton" class="navButton" style="cursor: pointer; text-align: center;">Bookings</a>
+		<a id="loreButton" class="navButton" style="cursor: pointer; text-align: center;">Lore</a>
+		<a id="donateButton" class="navButton" style="cursor: pointer; text-align: center;">Donate</a>
+		<a id="aboutButton" class="navButton" style="cursor: pointer; text-align: center;">About Us</a>
 	</nav>
 </div>
 <body id="body" style="visibility: hidden; margin-top: 50px;">
@@ -314,6 +354,30 @@
 							<p>This section is currently in progress! Please check back later.</p>
 							<p>We will list our available missions here.</p>
 							<br>
+							<div class="top-display-bottom">
+								<div class="bar-1"></div>
+								<div class="bar-2"></div>
+								<div class="bar-3"></div>
+								<div class="bar-4"></div>
+								<div class="bar-5"></div>	
+							</div>
+							<div class="spacer">
+								<div class="space-1"></div>
+								<div class="space-2"></div>
+								<div class="space-3"></div>
+								<div class="space-4"></div>
+							</div>
+							<div class="bar-runner">
+								<div class="bar-6"></div>
+								<div class="bar-7"></div>
+								<div class="bar-8"></div>
+								<div class="bar-9"></div>
+								<div class="bar-10"></div>
+							</div>
+							<h1 id="missions">Bookings</h1>
+							<h2>Ready to book a flight?</h2>
+							<p>Have you decided what flight you'd like to do? We got you</p>
+							<p>Come book a flight by clicking the "Bookings" button at the top or by following <a id="bookingLink" style="cursor: pointer;">this link</a>.</p>
 
 						<!-- End content area -->						
 
