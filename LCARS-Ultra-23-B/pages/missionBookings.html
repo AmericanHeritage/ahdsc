@@ -12,25 +12,139 @@
 </head>
 
 <script>
-	window.onload = function() {
+	document.addEventListener('DOMContentLoaded', function() {
+		var reducedMotion = document.getElementById("reducedMotion");
+		var fastMode = document.getElementById("fastMode");
+		var noBackground = document.getElementById("noBackground");
+
+		var warpJump = document.getElementById("warpJump");
 		var video = document.getElementById("exitWarpEnd");
 		var loop = document.getElementById("starBackground");
+
+		var celestialSystem = document.getElementById("celestialSystem");
+		
+		var blinkingText = document.getElementById("blinkingText");
+			
+			reducedMotion.onclick = function() {
+				if (reducedMotion.textContent.includes("OFF")) {
+					reducedMotion.textContent = "Reduced Motion ON";
+					reducedMotion.classList.remove("settingsButton");
+					reducedMotion.classList.add("settingOn");
+					localStorage.setItem("reducedMotion", "on");
+					loadSettings();
+				} else {
+					reducedMotion.textContent = "Reduced Motion OFF";
+					reducedMotion.classList.remove("settingOn");
+					reducedMotion.classList.add("settingsButton");
+					localStorage.setItem("reducedMotion", "off");
+					loadSettings();
+				}
+			}
+
+			fastMode.onclick = function() {
+				if (fastMode.textContent.includes("OFF")) {
+					fastMode.textContent = "Fast Mode ON";
+					fastMode.classList.remove("settingsButton");
+					fastMode.classList.add("settingOn");
+					localStorage.setItem("fastMode", "on");
+					loadSettings();
+				} else {
+					fastMode.textContent = "Fast Mode OFF";
+					fastMode.classList.remove("settingOn");
+					fastMode.classList.add("settingsButton");
+					localStorage.setItem("fastMode", "off");
+					loadSettings();
+				}
+			}
+
+			noBackground.onclick = function() {
+				if (noBackground.textContent.includes("OFF")) {
+					noBackground.textContent = "Background ON";
+					noBackground.classList.remove("settingsButton");
+					noBackground.classList.add("settingOn");
+					localStorage.setItem("noBackground", "on");
+					loadSettings();
+				} else {
+					noBackground.textContent = "Background OFF";
+					noBackground.classList.remove("settingOn");
+					noBackground.classList.add("settingsButton");
+					localStorage.setItem("noBackground", "off");
+					loadSettings();
+				}
+			}
+			
+			function loadSettings() {
+				var reducedMotionSetting = localStorage.getItem("reducedMotion");
+				if (reducedMotionSetting === "on") {
+					reducedMotion.textContent = "Reduced Motion ON";
+					reducedMotion.classList.remove("settingsButton");
+					reducedMotion.classList.add("settingOn");
+					video.style.display = "none";
+					warpJump.style.display = "none";
+					blinkingText.classList.remove("blink");
+					celestialBodies.forEach(function(body) {
+						body.animationPause = true;
+					});
+				} else {
+					reducedMotion.textContent = "Reduced Motion OFF";
+					reducedMotion.classList.remove("settingOn");
+					reducedMotion.classList.add("settingsButton");
+					warpJump.style.display = "block";
+					blinkingText.classList.add("blink");
+					celestialBodies.forEach(function(body) {
+						body.animationPause = false;
+					});
+				}
+
+				var fastModeSetting = localStorage.getItem("fastMode");
+				if (fastModeSetting === "on") {
+					fastMode.textContent = "Fast Mode ON";
+					fastMode.classList.remove("settingsButton");
+					fastMode.classList.add("settingOn");
+					video.style.display = "none";
+					warpJump.style.display = "none";
+				} else {
+					fastMode.textContent = "Fast Mode OFF";
+					fastMode.classList.remove("settingOn");
+					fastMode.classList.add("settingsButton");
+					warpJump.style.display = "block";
+				}
+
+				var noBackgroundSetting = localStorage.getItem("noBackground");
+				if (noBackgroundSetting === "on") {
+					noBackground.textContent = "Background ON";
+					noBackground.classList.remove("settingsButton");
+					noBackground.classList.add("settingOn");
+					loop.style.display = "block";
+					celestialSystem.style.display = "block";
+				} else {
+					noBackground.textContent = "Background OFF";
+					noBackground.classList.remove("settingOn");
+					noBackground.classList.add("settingsButton");
+					loop.style.display = "none";
+					celestialSystem.style.display = "none";
+				}
+			}
+
+		loadSettings();
+
 		var body = document.getElementById("body");
 		var logo = document.getElementById("sfc");
-		video.onended = function() {
-			loop.style.visibility = "visible";
-			video.style.transition = "opacity 1s";
-			body.style.transition = "opacity 1s";
-			loop.style.transition = "opacity 1s";
-			body.style.visibility = "visible";
-			video.style.opacity = "0";
-			loop.style.opacity = "1";
-			body.style.opacity = "1";
-			setTimeout(function() {
-				video.style.display = "none";
-			}, 1000);
-			document.body.style.overflow = "auto";
-		}
+
+				loop.style.visibility = "visible";
+				body.style.transition = "opacity 1s";
+				loop.style.transition = "opacity 1s";
+				body.style.visibility = "visible";
+				loop.style.opacity = "1";
+				body.style.opacity = "1";
+				setTimeout(function() {
+					video.style.transition = "opacity 1s";
+					video.style.opacity = "0";
+					setTimeout(function() {
+						video.style.display = "none";
+					}, 1000);
+				}, 4000);
+				document.body.style.overflow = "auto";
 
         var settings = document.getElementById("settings");
         var settingsArea = document.getElementById("settingsArea");
@@ -46,24 +160,28 @@
                 document.body.style.overflow = "auto";
             }
 
-        var warpJump = document.getElementById("warpJump");
         var missionButton = document.getElementById("missionButton");
         var homeButton = document.getElementById("homeButton");
-		var starBackground = document.getElementById("starBackground");
 		var bookingsButton = document.getElementById("bookingsButton");
 		var bookingLink = document.getElementById("bookingLink");
 		var loreButton = document.getElementById("loreButton");
 		var donateButton = document.getElementById("donateButton");
 		var aboutButton = document.getElementById("aboutButton");
+		var starOverlay = document.getElementById("starOverlay");
 
         homeButton.onclick = function (event) {
             event.preventDefault();
-            body.style.transition = "opacity 1s"
-			starBackground.style.transition = "opacity 1s";
-			starBackground.style.opacity = "1";
-            body.style.opacity = "0";
+			if (localStorage.getItem ("reducedMotion") === "on") {
+				window.location.href = "../pages/mainPage.html";
+				return;
+			}
+			if (localStorage.getItem ("fastMode") === "on") {
+				window.location.href = "../pages/mainPage.html";
+				return;
+			}
+			body.style.transition = "opacity 1s";
+			body.style.opacity = "0";
             setTimeout(function() {
-				body.style.visibility = "hidden";
                 window.location.href = "../pages/mainPage.html"
             }, 1000);
         }
@@ -109,19 +227,24 @@
                 changePage('../pages/aboutUs.html', warpJump);
             }
         }
-    }
-
+    });
         function changePage(newPage, exitJumpVideo) {
-				exitJumpVideo.style.visibility = "visible";
-				exitJumpVideo.play();
-				exitJumpVideo.style.transition = "opacity 1s";
-				exitJumpVideo.style.opacity = "1";
-                setTimeout(function() {
-                    window.location.href = newPage;
-                }, 2150);
-        }
-
-        
+			if (localStorage.getItem("reducedMotion") === "on") {
+				window.location.href = newPage;
+				return;
+			}
+			if (localStorage.getItem("fastMode") === "on") {
+				window.location.href = newPage;
+				return;
+			}
+			exitJumpVideo.style.visibility = "visible";
+			exitJumpVideo.play();
+			exitJumpVideo.style.transition = "opacity 1s";
+			exitJumpVideo.style.opacity = "1";
+			setTimeout(function() {
+				window.location.href = newPage;
+			}, 2150);
+        }    
 </script>
 <style>
 	:root {
@@ -129,6 +252,10 @@
 		--lightGray: #707070;
         --navBlue: #1e90ff;
 		--navLightBlue: #82c5fc;
+        --onGreen: #00c600;
+		--onGreenLight: #92ff92;
+		--offRed: #f60000;
+		--offRedLight: #ff5d5d;
 	}
 
 	.pageSettings:hover {
@@ -196,18 +323,80 @@
 		border-color: var(--navLightBlue) !important;
 		color: var(--navLightBlue) !important;
 	}
+
+    .settingsButton {
+		display: inline-block;
+		background-color: #000;
+		border-width: 3px;
+		border-style: solid;
+		border-color: var(--offRed);
+		min-height: 20px;
+		font-weight: bold;
+		text-align: center;
+		line-height: 1.1;
+		padding: 10px 10px 11px 5px;
+		text-decoration: none;
+		font-size: var(--nav-font);
+		color: var(--offRed); 
+		max-width: 150px;
+		flex: 1;
+	}
+	.settingsButton:hover {
+		filter: none;
+		border-color: var(--offRedLight);
+		color: var(--offRedLight);
+	}
+
+	.settingOn {
+		display: inline-block;
+		background-color: #000;
+		border-width: 3px;
+		border-style: solid;
+		border-color: var(--onGreen);
+		min-height: 20px;
+		font-weight: bold;
+		text-align: center;
+		line-height: 1.1;
+		padding: 10px 10px 11px 5px;
+		text-decoration: none;
+		font-size: var(--nav-font);
+		color: var(--onGreen); 
+		max-width: 150px;
+		flex: 1;
+	}
+	.settingOn:hover {
+		filter: none;
+		border-color: var(--onGreenLight);
+		color: var(--onGreenLight);
+	}
 </style>
 <div id="settingsArea" style="visibility: hidden;">
 	<div id="contentBlocker" style="background-color: black; opacity: .75; position: fixed; z-index: 11; top: 0; bottom: 0; left: 0; right: 0; margin: 0px 0px 0px 0px"></div>
 	<div id="exitSettings" class="panel-1 pageSettings" style="z-index: 12; position: fixed; text-align: center; cursor: pointer; top: 5px; left: 5px;">Exit</div>
+	<div id="settingsPanel" class="panel-1" style="z-index: 12; position: fixed; text-align: center; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 50vh; width: 50vw; display: flex; flex-direction: column; justify-content: space-evenly; align-items: left;">
+		<div style="display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between;">
+			<div id="reducedMotion" class="settingsButton" style="text-align: center; cursor: pointer; flex: none;">Reduced Motion OFF</div>
+			<div>This will turn on/off any animations, flashing lights, or moving objects. This will pause/play background animations but will not turn them on/off. </div>
+		</div>
+		<div style="display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between;">
+			<div id="fastMode" class="settingsButton" style="text-align: center; cursor: pointer; flex: none">Fast Mode OFF</div>
+			<div>This will turn on/off any full-screen animations. This does not affect backgrounds.</div>
+		</div>
+		<div style="display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between;">
+			<div id="noBackground" class="settingOn" style="text-align: center; cursor: pointer; flex: none">Background ON</div>
+			<div>This will turn on/off any backgrounds completely, leaving only a black back. This does not affect full-screen animations.</div>
+		</div>
+	</div>
 </div>
 <div id="videos">
 	<video class="centered-grid" id="warpJump" preload="auto" src="../assets/WarpJump.mp4" muted="true" style="position: fixed; visibility: hidden; z-index: 100; opacity: 0; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
     <video class="centered-grid" id="exitWarpEnd" preload="auto" src="../assets/ExitJumpEnd.mp4" muted="true" autoplay="true" style="position: fixed; visibility: visible; z-index: 10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
     <img class="centered-grid" id="starBackground" src="../assets/StarBackground.jpg" style="position: fixed; visibility: hidden; z-index: -10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;">
-    <img id="Planet" src="../assets/Systems/Placeholder.png" style="position: fixed; z-index: -9; width: 50vw; margin: -20vh 0px 0px -25vw">
-    <img id="Sun" src="../assets/Systems/Placeholder.png" style="position: fixed; z-index: -9; width: 100vw; margin: -75vh 0px 0px 70vw">
-    <img id="Moon" src="../assets/Systems/Placeholder.png" style="position: fixed; z-index: -9; width: 20vw; margin: 50vh 0px 0px 40vw">
+    <div id="celestialSystem">
+		<img id="Planet" src="../assets/Systems/Placeholder.png" style="position: fixed; z-index: -9; width: 50vw; margin: -20vh 0px 0px -25vw">
+    	<img id="Sun" src="../assets/Systems/Placeholder.png" style="position: fixed; z-index: -9; width: 100vw; margin: -75vh 0px 0px 70vw">
+    	<img id="Moon" src="../assets/Systems/Placeholder.png" style="position: fixed; z-index: -9; width: 20vw; margin: 50vh 0px 0px 40vw">
+	</div>
 </div>
 <script>
     class CelestialBody {
@@ -236,41 +425,42 @@
         new CelestialBody(document.getElementById("Sun"), 0, 0, 1, 1, 0.2, 0.2, 30, 30, 200, false, false, 0.015, 0, -0.01, -0.06),
         new CelestialBody(document.getElementById("Moon"), 0, 0, 1, 1, 0.15, 0.35, 30, 10, 200, false, false, 0.018, 0, -0.03, 0.20)
     ];
+	
+	function animateCelestialBody(body) {
+		if (localStorage.getItem("reducedMotion") === "off") {
+			if (!body.isPausedX) {
+				body.positionX += body.directionX * body.speedX;
+				if (Math.abs(body.positionX) >= body.amplitudeX) {
+					body.directionX *= -1;
+					body.isPausedX = true;
+					setTimeout(function() {
+						body.isPausedX = false;
+					}, body.pauseDuration);
+				}
+			}
+			if (!body.isPausedY) {
+				body.positionY += body.directionY * body.speedY;
+				if (Math.abs(body.positionY) >= body.amplitudeY) {
+					body.directionY *= -1;
+					body.isPausedY = true;
+					setTimeout(function() {
+						body.isPausedY = false;
+					}, body.pauseDuration);
+				}
+			}
+			body.rotation += body.rotationSpeed;
+			var offsetX = body.amplitudeX * Math.sin(body.frequency * body.positionX);
+			var offsetY = body.amplitudeY * Math.sin(body.frequency * body.positionY) - (window.scrollY * body.scrollSpeed);
+			body.element.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${body.rotation}deg)`;
+		}
+			requestAnimationFrame(function() {
+				animateCelestialBody(body);
+			});
+	}
 
-    function animateCelestialBody(body) {
-        if (!body.isPausedX) {
-            body.positionX += body.directionX * body.speedX;
-            if (Math.abs(body.positionX) >= body.amplitudeX) {
-                body.directionX *= -1;
-                body.isPausedX = true;
-                setTimeout(function() {
-                    body.isPausedX = false;
-                }, body.pauseDuration);
-            }
-        }
-        if (!body.isPausedY) {
-            body.positionY += body.directionY * body.speedY;
-            if (Math.abs(body.positionY) >= body.amplitudeY) {
-                body.directionY *= -1;
-                body.isPausedY = true;
-                setTimeout(function() {
-                    body.isPausedY = false;
-                }, body.pauseDuration);
-            }
-        }
-        body.rotation += body.rotationSpeed;
-        var offsetX = body.amplitudeX * Math.sin(body.frequency * body.positionX);
-        var offsetY = body.amplitudeY * Math.sin(body.frequency * body.positionY) - (window.scrollY * body.scrollSpeed);
-        body.element.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${body.rotation}deg)`;
-        requestAnimationFrame(function() {
-            animateCelestialBody(body);
-        });
-    }
-
-    celestialBodies.forEach(function(body) {
-        animateCelestialBody(body);
-    });
-    
+	celestialBodies.forEach(function(body) {
+		animateCelestialBody(body);
+	});
 </script>
 <div style="position: fixed; z-index: 9; width: 100%; top: 0; background-color: black; left: 0px">
 	<nav id="primary-nav" style="background-color: black; width: 100%; display: flex; justify-content: space-evenly;">
@@ -302,7 +492,7 @@
 										<img src="../assets/AHDSC.png" class="sfc" id="sfc">
 										<div class="lcars-heading">American Heritage Discovery Space Center</div>
 										<div class="lcars-access">
-											user authorization code <span class="blink medium-dark-blue">accepted</span>
+											user authorization code <span id="blinkingText" class="blink medium-dark-blue">accepted</span>
 										</div>
 									</div>
 									<div class="top-arch-panel-1">
@@ -391,7 +581,7 @@
 								<div class="footer-text">
 
 									<p> <!-- Your copyright information is only a suggestion. You can also choose to delete this paragraph. -->
-										Content Copyright &#169; 2024 American Heritage Discovery Space Center
+										Content Copyright &#169; 2025 American Heritage Discovery Space Center
 									</p>
 
 									<p>	<!-- This paragraph must not be removed. -->

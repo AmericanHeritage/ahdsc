@@ -1,53 +1,164 @@
 <!DOCTYPE html>
 <html>
+	
+	<head>
+		<link rel="icon" href="../assets/PageIcon.png">
+		<title>American Heritage Discovery Space Center</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="format-detection" content="date=no">
+		<link rel="stylesheet" type="text/css" href="../assets/lcars-ultra-picard.css">
+		<script src="../assets/jquery-3-7-0.min.js"></script>
+	</head>
+	
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			var reducedMotion = document.getElementById("reducedMotion");
+			var fastMode = document.getElementById("fastMode");
+			var noBackground = document.getElementById("noBackground");
+			var loop = document.getElementById("warpLoop");
+			var video = document.getElementById("warpJumpVideo");
+			var exitJumpVideo = document.getElementById("exitWarpStart");
+			var exitWarpEnd = document.getElementById("exitWarpEnd");
+			var body = document.getElementById("body");
+			var logo = document.getElementById("sfc");
+			
+			var blinkingText = document.getElementById("blinkingText");
+			
+			reducedMotion.onclick = function() {
+				if (reducedMotion.textContent.includes("OFF")) {
+					reducedMotion.textContent = "Reduced Motion ON";
+					reducedMotion.classList.remove("settingsButton");
+					reducedMotion.classList.add("settingOn");
+					localStorage.setItem("reducedMotion", "on");
+					loadSettings();
+				} else {
+					reducedMotion.textContent = "Reduced Motion OFF";
+					reducedMotion.classList.remove("settingOn");
+					reducedMotion.classList.add("settingsButton");
+					localStorage.setItem("reducedMotion", "off");
+					loadSettings();
+				}
+			}
 
-<head>
-	<link rel="icon" href="../assets/PageIcon.png">
-	<title>American Heritage Discovery Space Center</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="format-detection" content="telephone=no">
-	<meta name="format-detection" content="date=no">
-	<link rel="stylesheet" type="text/css" href="../assets/lcars-ultra-picard.css">
-	<script src="../assets/jquery-3-7-0.min.js"></script>
-</head>
+			fastMode.onclick = function() {
+				if (fastMode.textContent.includes("OFF")) {
+					fastMode.textContent = "Fast Mode ON";
+					fastMode.classList.remove("settingsButton");
+					fastMode.classList.add("settingOn");
+					localStorage.setItem("fastMode", "on");
+					loadSettings();
+				} else {
+					fastMode.textContent = "Fast Mode OFF";
+					fastMode.classList.remove("settingOn");
+					fastMode.classList.add("settingsButton");
+					localStorage.setItem("fastMode", "off");
+					loadSettings();
+				}
+			}
 
-<script>
-	window.onload = function() {
-		var video = document.getElementById("warpJumpVideo");
-		var loop = document.getElementById("warpLoop");
-		var body = document.getElementById("body");
-		var logo = document.getElementById("sfc");
-		video.onended = function() {
-			loop.style.visibility = "visible";
-			video.style.transition = "opacity 1s";
-			body.style.transition = "opacity 1s";
-			loop.style.transition = "opacity 1s";
-			body.style.visibility = "visible";
-			video.style.opacity = "0";
-			loop.style.opacity = "1";
-			body.style.opacity = "1";
-			setTimeout(function() {
-				video.style.display = "none";
-			}, 1000);
-			document.body.style.overflow = "auto";
-		}
+			noBackground.onclick = function() {
+				if (noBackground.textContent.includes("OFF")) {
+					noBackground.textContent = "Background ON";
+					noBackground.classList.remove("settingsButton");
+					noBackground.classList.add("settingOn");
+					localStorage.setItem("noBackground", "on");
+					loadSettings();
+				} else {
+					noBackground.textContent = "Background OFF";
+					noBackground.classList.remove("settingOn");
+					noBackground.classList.add("settingsButton");
+					localStorage.setItem("noBackground", "off");
+					loadSettings();
+				}
+			}
+			
+			function loadSettings() {
+				var reducedMotionSetting = localStorage.getItem("reducedMotion");
+				if (reducedMotionSetting === "on") {
+					reducedMotion.textContent = "Reduced Motion ON";
+					reducedMotion.classList.remove("settingsButton");
+					reducedMotion.classList.add("settingOn");
+					loop.pause()
+					video.style.display = "none";
+					exitJumpVideo.style.display = "none";
+					exitWarpEnd.style.display = "none";
+					blinkingText.classList.remove("blink");
+				} else {
+					reducedMotion.textContent = "Reduced Motion OFF";
+					reducedMotion.classList.remove("settingOn");
+					reducedMotion.classList.add("settingsButton");
+					loop.play()
+					exitJumpVideo.style.display = "block";
+					exitWarpEnd.style.display = "block";
+					blinkingText.classList.add("blink");
+				}
 
-		var settings = document.getElementById("settings");
-		var settingsArea = document.getElementById("settingsArea");
-		var exitSettings = document.getElementById("exitSettings");
+				var fastModeSetting = localStorage.getItem("fastMode");
+				if (fastModeSetting === "on") {
+					fastMode.textContent = "Fast Mode ON";
+					fastMode.classList.remove("settingsButton");
+					fastMode.classList.add("settingOn");
+					video.style.display = "none";
+					exitJumpVideo.style.display = "none";
+					exitWarpEnd.style.display = "none";
+				} else {
+					fastMode.textContent = "Fast Mode OFF";
+					fastMode.classList.remove("settingOn");
+					fastMode.classList.add("settingsButton");
+					exitJumpVideo.style.display = "block";
+					exitWarpEnd.style.display = "block";
+				}
 
-		settings.onclick = function() {
+				var noBackgroundSetting = localStorage.getItem("noBackground");
+				if (noBackgroundSetting === "on") {
+					noBackground.textContent = "Background ON";
+					noBackground.classList.remove("settingsButton");
+					noBackground.classList.add("settingOn");
+					loop.style.display = "block";
+				} else {
+					noBackground.textContent = "Background OFF";
+					noBackground.classList.remove("settingOn");
+					noBackground.classList.add("settingsButton");
+					loop.style.display = "none";
+				}
+			}
+			
+			loadSettings();
+			
+
+				loop.style.visibility = "visible";
+				if (localStorage.getItem("reducedMotion") === "off") {
+					loop.play();
+				}
+				body.style.transition = "opacity 1s";
+				loop.style.transition = "opacity 1s";
+				body.style.visibility = "visible";
+				loop.style.opacity = "1";
+				body.style.opacity = "1";
+				setTimeout(function() {
+					video.style.transition = "opacity 1s";
+					video.style.opacity = "0";
+					setTimeout(function() {
+						video.style.display = "none";
+					}, 1000);
+				}, 1500);
+				document.body.style.overflow = "auto";
+			
+			var settings = document.getElementById("settings");
+			var settingsArea = document.getElementById("settingsArea");
+			var exitSettings = document.getElementById("exitSettings");
+			
+			settings.onclick = function() {
 				settingsArea.style.visibility = "visible";
 				document.body.style.overflow = "hidden";
-		}
+			}
 
 		exitSettings.onclick = function() {
 				settingsArea.style.visibility = "hidden";
 				document.body.style.overflow = "auto";
 			}
 
-		var exitJumpVideo = document.getElementById("exitWarpStart");
-		var exitWarpEnd = document.getElementById("exitWarpEnd");
 
 		var missionButton = document.getElementById("missionButton");
 		var missionLink = document.getElementById("missionLink");
@@ -68,6 +179,14 @@
 
 		homeButton.onclick = function (event) {
 				event.preventDefault();
+				if (localStorage.getItem("reducedMotion") === "on") {
+					window.location.href = "../pages/mainPage.html";
+					return;
+				}
+				if (localStorage.getItem("fastMode") === "on") {
+					window.location.href = "../pages/mainPage.html";
+					return;
+				}
 				exitJumpVideo.style.visibility = "visible";
 				exitJumpVideo.play();
 				exitJumpVideo.style.transition = "opacity 1s";
@@ -125,17 +244,26 @@
 			event.preventDefault()
 			changePage('../pages/aboutUs.html', exitJumpVideo);
 		}
-}
 
-        function changePage(newPage, exitJumpVideo) {
-				exitJumpVideo.style.visibility = "visible";
-				exitJumpVideo.play();
-				exitJumpVideo.style.transition = "opacity 1s";
-				exitJumpVideo.style.opacity = "1";
-                setTimeout(function() {
-                    window.location.href = newPage;
-                }, 2150);
-        }
+
+	});
+	function changePage(newPage, exitJumpVideo) {
+			if (localStorage.getItem("reducedMotion") === "on") {
+				window.location.href = newPage;
+				return;
+			}
+			if (localStorage.getItem("fastMode") === "on") {
+				window.location.href = newPage;
+				return;
+			}
+			exitJumpVideo.style.visibility = "visible";
+			exitJumpVideo.play();
+			exitJumpVideo.style.transition = "opacity 1s";
+			exitJumpVideo.style.opacity = "1";
+			setTimeout(function() {
+				window.location.href = newPage;
+			}, 2150);
+	}
 </script>
 <style>
 	:root {
@@ -143,6 +271,10 @@
 		--lightGray: #707070;
 		--navBlue: #1e90ff;
 		--navLightBlue: #82c5fc;
+		--onGreen: #00c600;
+		--onGreenLight: #92ff92;
+		--offRed: #f60000;
+		--offRedLight: #ff5d5d;
 	}
 
 	.pageSettings:hover {
@@ -210,15 +342,74 @@
 		border-color: var(--navLightBlue) !important;
 		color: var(--navLightBlue) !important;
 	}
+
+	.settingsButton {
+		display: inline-block;
+		background-color: #000;
+		border-width: 3px;
+		border-style: solid;
+		border-color: var(--offRed);
+		min-height: 20px;
+		font-weight: bold;
+		text-align: center;
+		line-height: 1.1;
+		padding: 10px 10px 11px 5px;
+		text-decoration: none;
+		font-size: var(--nav-font);
+		color: var(--offRed); 
+		max-width: 150px;
+		flex: 1;
+	}
+	.settingsButton:hover {
+		filter: none;
+		border-color: var(--offRedLight);
+		color: var(--offRedLight);
+	}
+
+	.settingOn {
+		display: inline-block;
+		background-color: #000;
+		border-width: 3px;
+		border-style: solid;
+		border-color: var(--onGreen);
+		min-height: 20px;
+		font-weight: bold;
+		text-align: center;
+		line-height: 1.1;
+		padding: 10px 10px 11px 5px;
+		text-decoration: none;
+		font-size: var(--nav-font);
+		color: var(--onGreen); 
+		max-width: 150px;
+		flex: 1;
+	}
+	.settingOn:hover {
+		filter: none;
+		border-color: var(--onGreenLight);
+		color: var(--onGreenLight);
+	}
 </style>
 <div id="settingsArea" style="visibility: hidden;">
 	<div id="contentBlocker" style="background-color: black; opacity: .75; position: fixed; z-index: 11; top: 0; bottom: 0; left: 0; right: 0; margin: 0px 0px 0px 0px"></div>
 	<div id="exitSettings" class="panel-1 pageSettings" style="z-index: 12; position: fixed; text-align: center; cursor: pointer; top: 5px; left: 5px">Exit</div>
-	<div id="reducedMotion" class=""></div>
+	<div id="settingsPanel" class="panel-1" style="z-index: 12; position: fixed; text-align: center; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 50vh; width: 50vw; display: flex; flex-direction: column; justify-content: space-evenly; align-items: left;">
+		<div style="display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between;">
+			<div id="reducedMotion" class="settingsButton" style="text-align: center; cursor: pointer; flex: none;">Reduced Motion OFF</div>
+			<div>This will turn on/off any animations, flashing lights, or moving objects. This will pause/play background animations but will not turn them on/off. </div>
+		</div>
+		<div style="display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between;">
+			<div id="fastMode" class="settingsButton" style="text-align: center; cursor: pointer; flex: none">Fast Mode OFF</div>
+			<div>This will turn on/off any full-screen animations. This does not affect backgrounds.</div>
+		</div>
+		<div style="display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between;">
+			<div id="noBackground" class="settingOn" style="text-align: center; cursor: pointer; flex: none">Background ON</div>
+			<div>This will turn on/off any backgrounds completely, leaving only a black back. This does not affect full-screen animations.</div>
+		</div>
+	</div>
 </div>
 <div id="videos">
 	<video class="centered-grid" id="exitWarpStart" preload="auto" src="../assets/ExitJumpStart.mp4" muted="true" style="position: fixed; visibility: hidden; z-index: 100; opacity: 0; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
-	<video class="centered-grid" id="warpJumpVideo" preload="auto" src="../assets/WarpJump.mp4" muted="true" autoplay="true" style="position: fixed; visibility: visible; z-index: 10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
+	<video class="centered-grid" id="warpJumpVideo" preload="auto" src="../assets/WarpJump.mp4" muted="true" autoplay="true" style="position: fixed; visibility: visible; z-index: 100; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
 	<video class="centered-grid" id="warpLoop" preload="auto" src="../assets/WarpStarsLoop.mov" muted="true" autoplay="true" loop="true" style="position: fixed; visibility: hidden; z-index: -10; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
 	<video class="centered-grid" id="exitWarpEnd" preload="auto" src="../assets/ExitJumpEnd.mp4" muted="true" style="position: fixed; visibility: hidden; z-index: 110; object-fit: cover; top: 0; bottom: 0; left: 0; right: 0;"></video>
 </div>
@@ -252,7 +443,7 @@
 										<img src="../assets/AHDSC.png" class="sfc" id="sfc">
 										<div class="lcars-heading">American Heritage Discovery Space Center</div>
 										<div class="lcars-access">
-											user authorization code <span class="blink medium-dark-blue">accepted</span>
+											user authorization code <span id="blinkingText" class="blink medium-dark-blue">accepted</span>
 										</div>
 									</div>
 									<div class="top-arch-panel-1">
@@ -517,7 +708,7 @@
 								<div class="footer-text">
 
 									<p> <!-- Your copyright information is only a suggestion. You can also choose to delete this paragraph. -->
-										Content Copyright &#169; 2024 American Heritage Discovery Space Center
+										Content Copyright &#169; 2025 American Heritage Discovery Space Center
 									</p>
 
 									<p>	<!-- This paragraph must not be removed. -->
