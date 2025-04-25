@@ -399,33 +399,35 @@
 	</div>
 </div>
 <script>
-    class CelestialBody {
-        constructor(element, positionX, positionY, directionX, directionY, speedX, speedY, amplitudeX, amplitudeY, pauseDuration, isPausedX, isPausedY, frequency, rotation, rotationSpeed, scrollSpeed) {
-            this.element = element;
-            this.positionX = positionX;
-            this.positionY = positionY;
-            this.directionX = directionX;
-            this.directionY = directionY;
-            this.speedX = speedX;
-            this.speedY = speedY;
-            this.amplitudeX = amplitudeX;
-            this.amplitudeY = amplitudeY;
-            this.pauseDuration = pauseDuration;
-            this.isPausedX = isPausedX;
-            this.isPausedY = isPausedY;
-            this.frequency = frequency;
-            this.rotation = rotation;
-            this.rotationSpeed = rotationSpeed;
-            this.scrollSpeed = scrollSpeed;
-        }
-    }
+	class CelestialBody {
+		constructor(element, positionX, positionY, directionX, directionY, speedX, speedY, amplitudeX, amplitudeY, pauseDuration, isPausedX, isPausedY, frequency, rotation, rotationSpeed, scrollSpeed) {
+			this.element = element;
+			this.positionX = positionX;
+			this.positionY = positionY;
+			this.directionX = directionX;
+			this.directionY = directionY;
+			this.speedX = speedX;
+			this.speedY = speedY;
+			this.amplitudeX = amplitudeX;
+			this.amplitudeY = amplitudeY;
+			this.pauseDuration = pauseDuration;
+			this.isPausedX = isPausedX;
+			this.isPausedY = isPausedY;
+			this.frequency = frequency;
+			this.rotation = rotation;
+			this.rotationSpeed = rotationSpeed;
+			this.scrollSpeed = scrollSpeed;
+		}
+	}
 
-    var celestialBodies = [
-        new CelestialBody(document.getElementById("Planet"), 0, 0, 1, 1, 0.3, 0.3, 25, 25, 200, false, false, 0.02, 0, 0.03, -0.14),
-        new CelestialBody(document.getElementById("Sun"), 0, 0, 1, 1, 0.2, 0.2, 30, 30, 200, false, false, 0.015, 0, -0.01, -0.06),
-        new CelestialBody(document.getElementById("Moon"), 0, 0, 1, 1, 0.15, 0.35, 30, 10, 200, false, false, 0.018, 0, -0.03, 0.20)
-    ];
-	
+	const universalAnimationSpeed = .5; // Change this value to adjust animation speed universally
+
+	var celestialBodies = [
+		new CelestialBody(document.getElementById("Planet"), 0, 0, 1, 1, 0.3 * universalAnimationSpeed, 0.3 * universalAnimationSpeed, 25, 25, 200 / universalAnimationSpeed, false, false, 0.02 * universalAnimationSpeed, 0, 0.03 * universalAnimationSpeed, -0.14),
+		new CelestialBody(document.getElementById("Sun"), 0, 0, 1, 1, 0.2 * universalAnimationSpeed, 0.2 * universalAnimationSpeed, 30, 30, 200 / universalAnimationSpeed, false, false, 0.015 * universalAnimationSpeed, 0, -0.01 * universalAnimationSpeed, -0.06),
+		new CelestialBody(document.getElementById("Moon"), 0, 0, 1, 1, 0.15 * universalAnimationSpeed, 0.35 * universalAnimationSpeed, 30, 10, 200 / universalAnimationSpeed, false, false, 0.018 * universalAnimationSpeed, 0, -0.03 * universalAnimationSpeed, 0.20)
+	];
+
 	function animateCelestialBody(body) {
 		if (localStorage.getItem("reducedMotion") === "off") {
 			if (!body.isPausedX) {
@@ -453,14 +455,15 @@
 			var offsetY = body.amplitudeY * Math.sin(body.frequency * body.positionY) - (window.scrollY * body.scrollSpeed);
 			body.element.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${body.rotation}deg)`;
 		}
-			requestAnimationFrame(function() {
-				animateCelestialBody(body);
-			});
+		requestAnimationFrame(function() {
+			animateCelestialBody(body);
+		});
 	}
 
 	celestialBodies.forEach(function(body) {
 		animateCelestialBody(body);
 	});
+    
 </script>
 <div style="position: fixed; z-index: 9; width: 100%; top: 0; background-color: black; left: 0px">
 	<nav id="primary-nav" style="background-color: black; width: 100%; display: flex; justify-content: space-evenly;">
